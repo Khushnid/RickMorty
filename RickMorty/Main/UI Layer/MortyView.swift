@@ -8,6 +8,8 @@
 import UIKit
 
 class MortyView: UIView {
+    var onNewPageRequest: (() -> Void)?
+    
     private var dataSource = [MortyModelResult]() {
         didSet {
             guard !dataSource.isEmpty else { return }
@@ -16,7 +18,7 @@ class MortyView: UIView {
     }
     
     private let loader: UIActivityIndicatorView = {
-        let view = UIActivityIndicatorView(style: .medium)
+        let view = UIActivityIndicatorView(style: .large)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.hidesWhenStopped = true
         view.color = .gray
@@ -47,7 +49,7 @@ class MortyView: UIView {
 // MARK: - Interaction with controller
 extension MortyView {
     func setDataSource(dataSource: [MortyModelResult]) {
-        self.dataSource = dataSource
+        self.dataSource += dataSource
     }
     
     func startLoading() {
@@ -72,6 +74,11 @@ extension MortyView: UITableViewDataSource, UITableViewDelegate {
         guard let contentData = dataSource[safe: indexPath.row] else { return cell }
         cell.setupContentData(data: contentData)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard indexPath.row >= dataSource.count - 2 else { return }
+        onNewPageRequest?()
     }
 }
 

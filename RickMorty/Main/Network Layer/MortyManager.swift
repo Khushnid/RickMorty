@@ -22,15 +22,14 @@ extension MortyManager {
         static let characterEndpoint = "character"
     }
     
-    func fetchCharacter() async throws -> [MortyModelResult] {
+    func fetchCharacter(link: String) async throws -> MortyModel {
         do {
-            guard let characterEndpoint = URL(string: Constants.charcterURL) else { throw URLError(.badURL) }
+            guard let characterEndpoint = URL(string: link.isEmpty ? Constants.charcterURL : link) else { throw URLError(.badURL) }
+            print(characterEndpoint)
             let (data, response) = try await URLSession.shared.data(from: characterEndpoint)
             
             guard let responseData = handleResponse(data: data, response: response) else { throw URLError(.badServerResponse) }
-            guard let results = try decoder.decode(MortyModel.self, from: responseData).results else { throw URLError(.cannotDecodeContentData) }
-            
-            return results
+            return try decoder.decode(MortyModel.self, from: responseData)
         } catch {
             throw error
         }

@@ -8,6 +8,12 @@
 import UIKit
 
 class MortyController: UIViewController {
+    private var pageInfo: MortyModelInfo? = nil {
+        didSet {
+            
+        }
+    }
+    
     private let rootView = MortyView()
     
     override func loadView() {
@@ -17,6 +23,7 @@ class MortyController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupBinders()
         fetchCharacters()
     }
     
@@ -28,16 +35,21 @@ class MortyController: UIViewController {
 }
 
 private extension MortyController {
-    func fetchCharacters() {
+    func setupBinders() {
+        rootView.onNewPageRequest = { [weak self] in
+            guard let self else { return }
+            fetchCharacters(link: pageInfo?.next ?? "")
+        }
+    }
+    
+    func fetchCharacters(link: String = "") {
         rootView.startLoading()
         
         Task {
             do {
                 // MARK: - Simulated thread sleep for a half second
-                try await Task.sleep(nanoseconds: 500_000_000)
-                
-                let results = try await MortyManager.shared.fetchCharacter()
-                handleResults(results)
+                try await Task.sleep(nanoseconds: 2_000_000_000)
+                handleResults(try await MortyManager.shared.fetchCharacter(link: link))
             } catch {
                 rootView.stopLoading()
                 
@@ -48,10 +60,11 @@ private extension MortyController {
         }
     }
     
-    func handleResults(_ results: [MortyModelResult]?) {
+    func handleResults(_ result: MortyModel) {
         rootView.stopLoading()
+        pageInfo = result.info
         
-        guard let results else { return }
+        guard let results = result.results else { return }
         rootView.setDataSource(dataSource: results)
     }
 }
