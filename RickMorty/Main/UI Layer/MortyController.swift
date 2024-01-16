@@ -33,7 +33,9 @@ private extension MortyController {
         
         Task {
             do {
-                try await Task.sleep(nanoseconds: 1_000_000_000)
+                // MARK: - Simulated thread sleep for a half second
+                try await Task.sleep(nanoseconds: 500_000_000)
+                
                 let results = try await MortyManager.shared.fetchCharacter()
                 handleResults(results)
             } catch {
