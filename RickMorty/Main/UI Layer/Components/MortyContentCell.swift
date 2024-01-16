@@ -91,8 +91,8 @@ private extension MortyContentCell {
         
         NSLayoutConstraint.activate([
             container.topAnchor.constraint(equalTo: contentView.topAnchor),
-            container.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            container.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            container.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 6),
+            container.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -6),
             container.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
             container.heightAnchor.constraint(greaterThanOrEqualToConstant: 164),
         
