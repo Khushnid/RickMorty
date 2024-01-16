@@ -44,7 +44,6 @@ class MortyView: UIView {
     }
 }
 
-
 // MARK: - Interaction with controller
 extension MortyView {
     func setDataSource(dataSource: [MortyModelResult]) {

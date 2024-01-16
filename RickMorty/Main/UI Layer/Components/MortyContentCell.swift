@@ -9,6 +9,10 @@ import Kingfisher
 import UIKit
 
 class MortyContentCell: UITableViewCell {
+    private enum Constants {
+        static let loaderImage = UIImage(named: "rick_and_morty_placeholder")
+    }
+    
     static let reuseID = String(describing: MortyContentCell.self)
     
     private let container: UIView = {
@@ -52,13 +56,13 @@ class MortyContentCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        image.image = UIImage(named: "rick_and_morty_placeholder")
+        image.image = Constants.loaderImage
         horizontalTitleStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
     }
     
     func setupContentData(data: MortyModelResult) {
         if let url = data.image, let imageURL = URL(string: url) {
-            image.kf.setImage(with: imageURL, placeholder: UIImage(named: "rick_and_morty_placeholder"))
+            image.kf.setImage(with: imageURL, placeholder: Constants.loaderImage)
         }
        
         
