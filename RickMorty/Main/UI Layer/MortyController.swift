@@ -40,7 +40,7 @@ private extension MortyController {
                 rootView.stopLoading()
                 
                 showAlert(title: "Error occured", message: error.localizedDescription) {
-                    // TODO: - Add retry strategy logic here
+                    self.fetchCharacters()
                 }
             }
         }
