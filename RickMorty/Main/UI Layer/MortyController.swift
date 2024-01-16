@@ -33,11 +33,15 @@ private extension MortyController {
         
         Task {
             do {
+                try await Task.sleep(nanoseconds: 1_000_000_000)
                 let results = try await MortyManager.shared.fetchCharacter()
                 handleResults(results)
             } catch {
                 rootView.stopLoading()
-                print("Error: \(error)")
+                
+                showAlert(title: "Error occured", message: error.localizedDescription) {
+                    // TODO: - Add retry strategy logic here
+                }
             }
         }
     }

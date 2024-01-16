@@ -18,6 +18,7 @@
 		B67F2E922B56642500998344 /* MortyManager+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67F2E912B56642500998344 /* MortyManager+Helpers.swift */; };
 		B67F2E982B567FDB00998344 /* MortyContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67F2E972B567FDB00998344 /* MortyContentCell.swift */; };
 		B67F2E9B2B5686E100998344 /* Collection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67F2E9A2B5686E100998344 /* Collection+Extensions.swift */; };
+		B67F2E9D2B56887900998344 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67F2E9C2B56887900998344 /* UIViewController+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		B67F2E912B56642500998344 /* MortyManager+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MortyManager+Helpers.swift"; sourceTree = "<group>"; };
 		B67F2E972B567FDB00998344 /* MortyContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MortyContentCell.swift; sourceTree = "<group>"; };
 		B67F2E9A2B5686E100998344 /* Collection+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extensions.swift"; sourceTree = "<group>"; };
+		B67F2E9C2B56887900998344 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				B67F2E9A2B5686E100998344 /* Collection+Extensions.swift */,
+				B67F2E9C2B56887900998344 /* UIViewController+Extensions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 			files = (
 				B67F2E902B5656F600998344 /* MortyView.swift in Sources */,
 				B67F2E922B56642500998344 /* MortyManager+Helpers.swift in Sources */,
+				B67F2E9D2B56887900998344 /* UIViewController+Extensions.swift in Sources */,
 				B67F2E7A2B56456A00998344 /* MortyController.swift in Sources */,
 				B67F2E762B56456A00998344 /* AppDelegate.swift in Sources */,
 				B67F2E782B56456A00998344 /* SceneDelegate.swift in Sources */,

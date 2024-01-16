@@ -16,7 +16,7 @@ class MortyView: UIView {
     }
     
     private let loader: UIActivityIndicatorView = {
-        let view = UIActivityIndicatorView(style: .large)
+        let view = UIActivityIndicatorView(style: .medium)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.hidesWhenStopped = true
         view.color = .gray
@@ -28,7 +28,6 @@ class MortyView: UIView {
         table.register(MortyContentCell.self, forCellReuseIdentifier: MortyContentCell.reuseID)
         table.translatesAutoresizingMaskIntoConstraints = false
         table.showsVerticalScrollIndicator = false
-        table.backgroundColor = .white
         table.separatorStyle = .none
         return table
     }()
@@ -79,23 +78,21 @@ extension MortyView: UITableViewDataSource, UITableViewDelegate {
 
 private extension MortyView {
     func setupViewsAndConstraints() {
-        addSubview(loader)
         addSubview(tableView)
+        addSubview(loader)
         
         NSLayoutConstraint.activate([
-            loader.centerXAnchor.constraint(equalTo: centerXAnchor),
-            loader.centerYAnchor.constraint(equalTo: centerYAnchor),
-            
-            tableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            tableView.topAnchor.constraint(equalTo: topAnchor),
             tableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            loader.centerXAnchor.constraint(equalTo: centerXAnchor),
+            loader.centerYAnchor.constraint(equalTo: centerYAnchor),
         ])
     }
     
     func setupPrerequisites() {
-        backgroundColor = .white
-        
         tableView.delegate = self
         tableView.dataSource = self
     }
