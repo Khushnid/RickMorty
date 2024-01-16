@@ -8,7 +8,14 @@
 import UIKit
 
 class MortyView: UIView {
-    private let activityIndicator: UIActivityIndicatorView = {
+    private var dataSource = [MortyModelResult]() {
+        didSet {
+            guard !dataSource.isEmpty else { return }
+            tableView.reloadData()
+        }
+    }
+    
+    private let loader: UIActivityIndicatorView = {
         let view = UIActivityIndicatorView(style: .large)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.hidesWhenStopped = true
@@ -18,14 +25,16 @@ class MortyView: UIView {
     
     private let tableView: UITableView = {
         let table = UITableView()
+        table.translatesAutoresizingMaskIntoConstraints = false
+        table.register(MortyContentCell.self, forCellReuseIdentifier: MortyContentCell.reuseID)
         return table
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = .green
         setupViewsAndConstraints()
+        setupPrerequisites()
     }
     
     required init?(coder: NSCoder) {
@@ -33,23 +42,48 @@ class MortyView: UIView {
     }
 }
 
+
+// MARK: - Interaction with controller
 extension MortyView {
+    func setDataSource(dataSource: [MortyModelResult]) {
+        self.dataSource = dataSource
+    }
+    
     func startLoading() {
-        activityIndicator.startAnimating()
+        loader.startAnimating()
     }
     
     func stopLoading() {
-        activityIndicator.stopAnimating()
+        loader.stopAnimating()
+    }
+}
+
+extension MortyView: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        dataSource.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MortyContentCell.reuseID) as? MortyContentCell else {
+            return UITableViewCell()
+        }
+        
+        return cell
     }
 }
 
 private extension MortyView {
     func setupViewsAndConstraints() {
-        addSubview(activityIndicator)
+        addSubview(loader)
         
         NSLayoutConstraint.activate([
-            activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor)
+            loader.centerXAnchor.constraint(equalTo: centerXAnchor),
+            loader.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
+    }
+    
+    func setupPrerequisites() {
+        tableView.delegate = self
+        tableView.dataSource = self
     }
 }

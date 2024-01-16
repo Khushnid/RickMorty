@@ -33,7 +33,6 @@ private extension MortyController {
         
         Task {
             do {
-                try await Task.sleep(nanoseconds: 3_000_000_000)
                 let results = try await MortyManager.shared.fetchCharacter()
                 handleResults(results)
             } catch {
@@ -45,8 +44,8 @@ private extension MortyController {
     
     func handleResults(_ results: [MortyModelResult]?) {
         rootView.stopLoading()
-        guard let results else { return }
         
-        print("Received results: \(results)")
+        guard let results else { return }
+        rootView.setDataSource(dataSource: results)
     }
 }
