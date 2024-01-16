@@ -21,7 +21,7 @@ class MortyView: UIView {
         let view = UIActivityIndicatorView(style: .large)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.hidesWhenStopped = true
-        view.color = .gray
+        view.color = .darkText
         return view
     }()
     

@@ -18,7 +18,7 @@ class MortyController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupBinders()
+        setupController()
         fetchCharacters()
     }
     
@@ -30,7 +30,9 @@ class MortyController: UIViewController {
 }
 
 private extension MortyController {
-    func setupBinders() {
+    func setupController() {
+        title = "Rick & Morty"
+        
         rootView.onNewPageRequest = { [weak self] in
             guard let self, let nextURL = pageInfo?.next else { return }
             fetchCharacters(link: nextURL)
@@ -42,7 +44,7 @@ private extension MortyController {
         
         Task {
             do {
-                // MARK: - Simulated thread sleep for a half second
+                // MARK: - Simulated thread sleep
                 try await Task.sleep(nanoseconds: 500_000_000)
                 handleResults(try await MortyManager.shared.fetchCharacter(link: link))
             } catch {
