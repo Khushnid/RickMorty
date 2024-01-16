@@ -20,10 +20,10 @@ struct MortyModelInfo: Codable {
 struct MortyModelResult: Codable {
     let id: Int?
     let name: String?
-    let status: MortyModelStatus?
+    let status: String?
     let species: String?
     let type: String?
-    let gender: MortyModelGender?
+    let gender: String?
     let origin, location: MortyModelLocation?
     let image: String?
     let episode: [String]?
@@ -34,16 +34,4 @@ struct MortyModelResult: Codable {
 struct MortyModelLocation: Codable {
     let name: String?
     let url: String?
-}
-
-enum MortyModelGender: String, Codable {
-    case female = "Female"
-    case male = "Male"
-    case unknown = "unknown"
-}
-
-enum MortyModelStatus: String, Codable {
-    case alive = "Alive"
-    case dead = "Dead"
-    case unknown = "unknown"
 }
