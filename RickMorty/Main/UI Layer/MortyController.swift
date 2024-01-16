@@ -8,12 +8,7 @@
 import UIKit
 
 class MortyController: UIViewController {
-    private var pageInfo: MortyModelInfo? = nil {
-        didSet {
-            
-        }
-    }
-    
+    private var pageInfo: MortyModelInfo? = nil
     private let rootView = MortyView()
     
     override func loadView() {
@@ -30,28 +25,28 @@ class MortyController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
-        rootView.stopLoading()
+        loader(state: .stop)
     }
 }
 
 private extension MortyController {
     func setupBinders() {
         rootView.onNewPageRequest = { [weak self] in
-            guard let self else { return }
-            fetchCharacters(link: pageInfo?.next ?? "")
+            guard let self, let nextURL = pageInfo?.next else { return }
+            fetchCharacters(link: nextURL)
         }
     }
     
     func fetchCharacters(link: String = "") {
-        rootView.startLoading()
+        loader(state: .start)
         
         Task {
             do {
                 // MARK: - Simulated thread sleep for a half second
-                try await Task.sleep(nanoseconds: 2_000_000_000)
+                try await Task.sleep(nanoseconds: 500_000_000)
                 handleResults(try await MortyManager.shared.fetchCharacter(link: link))
             } catch {
-                rootView.stopLoading()
+                loader(state: .stop)
                 
                 showAlert(title: "Error occured", message: error.localizedDescription) {
                     self.fetchCharacters()
@@ -61,10 +56,21 @@ private extension MortyController {
     }
     
     func handleResults(_ result: MortyModel) {
-        rootView.stopLoading()
+        loader(state: .stop)
         pageInfo = result.info
         
         guard let results = result.results else { return }
         rootView.setDataSource(dataSource: results)
+    }
+    
+    func loader(state: LoaderState) {
+        switch state {
+       
+        case .start:
+            rootView.startLoading()
+        
+        case .stop:
+            rootView.stopLoading()
+        }
     }
 }
