@@ -16,15 +16,7 @@ class MortyView: UIView {
             tableView.reloadData()
         }
     }
-    
-    private let loader: UIActivityIndicatorView = {
-        let view = UIActivityIndicatorView(style: .large)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.hidesWhenStopped = true
-        view.color = .darkText
-        return view
-    }()
-    
+
     private let tableView: UITableView = {
         let table = UITableView()
         table.register(MortyContentCell.self, forCellReuseIdentifier: MortyContentCell.reuseID)
@@ -44,20 +36,9 @@ class MortyView: UIView {
     required init?(coder: NSCoder) {
         fatalError()
     }
-}
-
-// MARK: - Interaction with controller
-extension MortyView {
+    
     func setDataSource(dataSource: [MortyModelResult]) {
         self.dataSource += dataSource
-    }
-    
-    func startLoading() {
-        loader.startAnimating()
-    }
-    
-    func stopLoading() {
-        loader.stopAnimating()
     }
 }
 
@@ -77,24 +58,32 @@ extension MortyView: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard indexPath.row == dataSource.count - 1 else { return }
+        let spinner = UIActivityIndicatorView(style: .medium)
+        spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
+        spinner.hidesWhenStopped = true
+       
+        let lastSectionIndex = tableView.numberOfSections - 1
+        guard indexPath.section == lastSectionIndex && indexPath.row == tableView.numberOfRows(inSection: lastSectionIndex) - 1 else {
+            return spinner.stopAnimating()
+        }
+        
         onNewPageRequest?()
+        spinner.startAnimating()
+
+        tableView.tableFooterView = spinner
+        tableView.tableFooterView?.isHidden = false
     }
 }
 
 private extension MortyView {
     func setupViewsAndConstraints() {
         addSubview(tableView)
-        addSubview(loader)
         
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: topAnchor),
             tableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            
-            loader.centerXAnchor.constraint(equalTo: centerXAnchor),
-            loader.centerYAnchor.constraint(equalTo: centerYAnchor),
+            tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
     

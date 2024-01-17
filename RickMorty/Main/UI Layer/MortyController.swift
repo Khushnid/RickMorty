@@ -8,7 +8,7 @@
 import UIKit
 
 class MortyController: UIViewController {
-    private var pageInfo: MortyModelInfo? = nil
+    private var nextPage = ""
     private let rootView = MortyView()
     
     override func loadView() {
@@ -21,12 +21,6 @@ class MortyController: UIViewController {
         setupController()
         fetchCharacters()
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-        loader(state: .stop)
-    }
 }
 
 private extension MortyController {
@@ -34,22 +28,18 @@ private extension MortyController {
         title = "Rick & Morty"
         
         rootView.onNewPageRequest = { [weak self] in
-            guard let self, let nextURL = pageInfo?.next else { return }
-            fetchCharacters(link: nextURL)
+            guard let self, !nextPage.isEmpty else { return }
+            fetchCharacters(link: nextPage)
         }
     }
     
     func fetchCharacters(link: String = "") {
-        loader(state: .start)
-        
         Task {
             do {
                 // MARK: - Simulated thread sleep
-                try await Task.sleep(nanoseconds: 500_000_000)
+                try await Task.sleep(nanoseconds: 300_000_000)
                 handleResults(try await MortyManager.shared.fetchCharacter(link: link))
             } catch {
-                loader(state: .stop)
-                
                 showAlert(title: "Error occured", message: error.localizedDescription) {
                     self.fetchCharacters()
                 }
@@ -58,21 +48,9 @@ private extension MortyController {
     }
     
     func handleResults(_ result: MortyModel) {
-        loader(state: .stop)
-        pageInfo = result.info
+        nextPage = result.info?.next ?? ""
         
         guard let results = result.results else { return }
         rootView.setDataSource(dataSource: results)
-    }
-    
-    func loader(state: LoaderState) {
-        switch state {
-       
-        case .start:
-            rootView.startLoading()
-        
-        case .stop:
-            rootView.stopLoading()
-        }
     }
 }
