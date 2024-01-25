@@ -59,13 +59,11 @@ extension MortyView: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let spinner = UIActivityIndicatorView(style: .medium)
-        spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
+        spinner.frame = CGRect(x: .zero, y: .zero, width: tableView.bounds.width, height: CGFloat(44))
         spinner.hidesWhenStopped = true
-       
+        
         let lastSectionIndex = tableView.numberOfSections - 1
-        guard indexPath.section == lastSectionIndex && indexPath.row == tableView.numberOfRows(inSection: lastSectionIndex) - 1 else {
-            return spinner.stopAnimating()
-        }
+        guard indexPath.section == lastSectionIndex && indexPath.row == tableView.numberOfRows(inSection: lastSectionIndex) - 1 else { return }
         
         onNewPageRequest?()
         spinner.startAnimating()
