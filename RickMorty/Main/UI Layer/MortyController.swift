@@ -13,6 +13,7 @@ class MortyController: UIViewController {
     
     override func loadView() {
         view = rootView
+        rootView.setupMortyView()
     }
     
     override func viewDidLoad() {

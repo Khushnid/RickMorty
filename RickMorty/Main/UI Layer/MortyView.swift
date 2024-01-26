@@ -10,53 +10,65 @@ import UIKit
 class MortyView: UIView {
     var onNewPageRequest: (() -> Void)?
     
-    private var dataSource = [MortyModel.MortyModelResult]() {
+    enum MortySection {
+        case main
+    }
+    
+    var dataSource: UITableViewDiffableDataSource<MortySection, MortyHashed>!
+    
+    private var networkDTO = [MortyModelResult]() {
         didSet {
-            guard !dataSource.isEmpty else { return }
-            tableView.reloadData()
+            applySnapshot()
         }
     }
-
-    private let tableView: UITableView = {
+    
+    private(set) lazy var tableView: UITableView = {
         let table = UITableView()
         table.register(MortyContentCell.self, forCellReuseIdentifier: MortyContentCell.reuseID)
         table.translatesAutoresizingMaskIntoConstraints = false
         table.showsVerticalScrollIndicator = false
         table.separatorStyle = .none
+        table.delegate = self
         return table
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    func setDataSource(dataSource: [MortyModelResult]) {
+        self.networkDTO += dataSource
+    }
+    
+    func setupMortyView() {
+        addSubview(tableView)
         
-        setupViewsAndConstraints()
-        setupPrerequisites()
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+        
+        dataSource = UITableViewDiffableDataSource<MortySection, MortyHashed>(
+            tableView: tableView,
+            cellProvider: { tableView, indexPath, itemIdentifier in
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: MortyContentCell.reuseID) as? MortyContentCell else {
+                    return UITableViewCell()
+                }
+                
+                guard let contentData = self.networkDTO[safe: indexPath.row] else { return cell }
+                cell.setupContentData(data: contentData)
+                return cell
+            }
+        )
     }
     
-    required init?(coder: NSCoder) {
-        fatalError()
-    }
-    
-    func setDataSource(dataSource: [MortyModel.MortyModelResult]) {
-        self.dataSource += dataSource
+    func applySnapshot() {
+        var currentSnapshot = NSDiffableDataSourceSnapshot<MortySection, MortyHashed>()
+        currentSnapshot.appendSections([.main])
+        currentSnapshot.appendItems(networkDTO.compactMap { MortyHashed($0) } )
+        dataSource.apply(currentSnapshot, animatingDifferences: false)
     }
 }
 
-extension MortyView: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        dataSource.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MortyContentCell.reuseID) as? MortyContentCell else {
-            return UITableViewCell()
-        }
-        
-        guard let contentData = dataSource[safe: indexPath.row] else { return cell }
-        cell.setupContentData(data: contentData)
-        return cell
-    }
-    
+extension MortyView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let spinner = UIActivityIndicatorView(style: .medium)
         spinner.frame = CGRect(x: .zero, y: .zero, width: tableView.bounds.width, height: CGFloat(44))
@@ -67,26 +79,8 @@ extension MortyView: UITableViewDataSource, UITableViewDelegate {
         
         onNewPageRequest?()
         spinner.startAnimating()
-
+        
         tableView.tableFooterView = spinner
         tableView.tableFooterView?.isHidden = false
-    }
-}
-
-private extension MortyView {
-    func setupViewsAndConstraints() {
-        addSubview(tableView)
-        
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ])
-    }
-    
-    func setupPrerequisites() {
-        tableView.delegate = self
-        tableView.dataSource = self
     }
 }

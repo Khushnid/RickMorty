@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B60806D82B63D9170048646B /* MortyHashed.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60806D72B63D9170048646B /* MortyHashed.swift */; };
 		B67F2E762B56456A00998344 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67F2E752B56456A00998344 /* AppDelegate.swift */; };
 		B67F2E782B56456A00998344 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67F2E772B56456A00998344 /* SceneDelegate.swift */; };
 		B67F2E7A2B56456A00998344 /* MortyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67F2E792B56456A00998344 /* MortyController.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B60806D72B63D9170048646B /* MortyHashed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MortyHashed.swift; sourceTree = "<group>"; };
 		B67F2E722B56456A00998344 /* RickMorty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickMorty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B67F2E752B56456A00998344 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B67F2E772B56456A00998344 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +53,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B60806D62B63D9090048646B /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				B60806D72B63D9170048646B /* MortyHashed.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
 		B67F2E692B56456A00998344 = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +111,7 @@
 		B67F2E932B56643200998344 /* UI Layer */ = {
 			isa = PBXGroup;
 			children = (
+				B60806D62B63D9090048646B /* Entity */,
 				B67F2E962B567FB200998344 /* Components */,
 				B67F2E792B56456A00998344 /* MortyController.swift */,
 				B67F2E8D2B56553300998344 /* MortyModel.swift */,
@@ -217,6 +228,7 @@
 				B67F2E7A2B56456A00998344 /* MortyController.swift in Sources */,
 				B67F2E762B56456A00998344 /* AppDelegate.swift in Sources */,
 				B67F2E782B56456A00998344 /* SceneDelegate.swift in Sources */,
+				B60806D82B63D9170048646B /* MortyHashed.swift in Sources */,
 				B67F2E8E2B56553300998344 /* MortyModel.swift in Sources */,
 				B67F2E8C2B5654B900998344 /* MortyManager.swift in Sources */,
 				B67F2E982B567FDB00998344 /* MortyContentCell.swift in Sources */,
