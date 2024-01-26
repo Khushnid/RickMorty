@@ -10,7 +10,7 @@ import UIKit
 class MortyView: UIView {
     var onNewPageRequest: (() -> Void)?
     
-    private var dataSource = [MortyModelResult]() {
+    private var dataSource = [MortyModel.MortyModelResult]() {
         didSet {
             guard !dataSource.isEmpty else { return }
             tableView.reloadData()
@@ -37,7 +37,7 @@ class MortyView: UIView {
         fatalError()
     }
     
-    func setDataSource(dataSource: [MortyModelResult]) {
+    func setDataSource(dataSource: [MortyModel.MortyModelResult]) {
         self.dataSource += dataSource
     }
 }

@@ -10,22 +10,23 @@ import Foundation
 struct MortyModel: Codable {
     let info: MortyModelInfo?
     let results: [MortyModelResult]?
-}
+    
+    struct MortyModelInfo: Codable {
+        let next, prev: String?
+    }
+    
+    struct MortyModelResult: Codable {
+        let name: String?
+        let status: String?
+        let species: String?
+        let gender: String?
+        let origin, location: MortyModelLocation?
+        let image: String?
+        
+        struct MortyModelLocation: Codable {
+            let name: String?
+            let url: String?
+        }
 
-struct MortyModelInfo: Codable {
-    let next, prev: String?
-}
-
-struct MortyModelResult: Codable {
-    let name: String?
-    let status: String?
-    let species: String?
-    let gender: String?
-    let origin, location: MortyModelLocation?
-    let image: String?
-}
-
-struct MortyModelLocation: Codable {
-    let name: String?
-    let url: String?
+    }
 }
