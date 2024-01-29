@@ -8,8 +8,8 @@
 import Foundation
 
 extension MortyManager {
-    func handleResponse(data: Data?, response: URLResponse?) -> Data? {
-        guard let data, let response = response as? HTTPURLResponse else { return nil }
-        return (200...299) ~= response.statusCode ? data : nil
+    func validate(response: URLResponse?) -> Bool {
+        guard let response = response as? HTTPURLResponse else { return false }
+        return (200...299) ~= response.statusCode
     }
 }

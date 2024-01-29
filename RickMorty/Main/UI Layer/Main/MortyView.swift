@@ -16,10 +16,8 @@ class MortyView: UIView {
     
     var dataSource: UITableViewDiffableDataSource<MortySection, MortyHashed>!
     
-    private var networkDTO = [MortyModelResult]() {
-        didSet {
-            applySnapshot()
-        }
+    private var networkDTO = [MortyModel.MortyModelResult]() {
+        didSet { applySnapshot() }
     }
     
     private(set) lazy var tableView: UITableView = {
@@ -32,7 +30,14 @@ class MortyView: UIView {
         return table
     }()
     
-    func setDataSource(dataSource: [MortyModelResult]) {
+    private(set) lazy var tableLoader: UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView(style: .medium)
+        spinner.frame = CGRect(x: .zero, y: .zero, width: tableView.bounds.width, height: CGFloat(44))
+        spinner.hidesWhenStopped = true
+        return spinner
+    }()
+    
+    func setDataSource(dataSource: [MortyModel.MortyModelResult]) {
         self.networkDTO += dataSource
     }
     
@@ -63,24 +68,20 @@ class MortyView: UIView {
     func applySnapshot() {
         var currentSnapshot = NSDiffableDataSourceSnapshot<MortySection, MortyHashed>()
         currentSnapshot.appendSections([.main])
-        currentSnapshot.appendItems(networkDTO.compactMap { MortyHashed($0) } )
+        currentSnapshot.appendItems(networkDTO.compactMap { MortyHashed(model: $0) })
         dataSource.apply(currentSnapshot, animatingDifferences: false)
     }
 }
 
 extension MortyView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let spinner = UIActivityIndicatorView(style: .medium)
-        spinner.frame = CGRect(x: .zero, y: .zero, width: tableView.bounds.width, height: CGFloat(44))
-        spinner.hidesWhenStopped = true
-        
         let lastSectionIndex = tableView.numberOfSections - 1
         guard indexPath.section == lastSectionIndex && indexPath.row == tableView.numberOfRows(inSection: lastSectionIndex) - 1 else { return }
         
         onNewPageRequest?()
-        spinner.startAnimating()
+        tableLoader.startAnimating()
         
-        tableView.tableFooterView = spinner
+        tableView.tableFooterView = tableLoader
         tableView.tableFooterView?.isHidden = false
     }
 }

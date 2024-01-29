@@ -37,8 +37,6 @@ private extension MortyController {
     func fetchCharacters(link: String = "") {
         Task {
             do {
-                // MARK: - Simulated thread sleep
-                try await Task.sleep(nanoseconds: 300_000_000)
                 handleResults(try await MortyManager.shared.fetchCharacter(link: link))
             } catch {
                 showAlert(title: "Error occured", message: error.localizedDescription) {

@@ -8,13 +8,6 @@
 import Foundation
 
 actor MortyManager {
-    static let shared = MortyManager()
-    private init() {}
-    
-    private let decoder = JSONDecoder()
-}
-
-extension MortyManager {
     private enum Constants {
         static let charcterURL = baseURL + characterEndpoint
 
@@ -22,13 +15,18 @@ extension MortyManager {
         static let characterEndpoint = "character"
     }
     
+    private init() {}
+    static let shared = MortyManager()
+}
+
+extension MortyManager {
     func fetchCharacter(link: String) async throws -> MortyModel {
         do {
-            guard let characterEndpoint = URL(string: link.isEmpty ? Constants.charcterURL : link) else { throw URLError(.badURL) }
-            let (data, response) = try await URLSession.shared.data(from: characterEndpoint)
-            
-            guard let responseData = handleResponse(data: data, response: response) else { throw URLError(.badServerResponse) }
-            return try decoder.decode(MortyModel.self, from: responseData)
+            guard let endpoint = URL(string: link.isEmpty ? Constants.charcterURL : link) else { throw URLError(.badURL) }
+            let (data, response) = try await URLSession.shared.data(from: endpoint)
+           
+            guard validate(response: response) else { throw URLError(.badServerResponse) }
+            return try JSONDecoder().decode(MortyModel.self, from: data)
         } catch {
             throw error
         }

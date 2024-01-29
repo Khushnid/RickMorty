@@ -56,9 +56,19 @@
 		B60806D62B63D9090048646B /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				B67F2E8D2B56553300998344 /* MortyModel.swift */,
 				B60806D72B63D9170048646B /* MortyHashed.swift */,
 			);
 			path = Entity;
+			sourceTree = "<group>";
+		};
+		B60806D92B6756280048646B /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				B67F2E792B56456A00998344 /* MortyController.swift */,
+				B67F2E8F2B5656F600998344 /* MortyView.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 		B67F2E692B56456A00998344 = {
@@ -111,11 +121,9 @@
 		B67F2E932B56643200998344 /* UI Layer */ = {
 			isa = PBXGroup;
 			children = (
-				B60806D62B63D9090048646B /* Entity */,
+				B60806D92B6756280048646B /* Main */,
 				B67F2E962B567FB200998344 /* Components */,
-				B67F2E792B56456A00998344 /* MortyController.swift */,
-				B67F2E8D2B56553300998344 /* MortyModel.swift */,
-				B67F2E8F2B5656F600998344 /* MortyView.swift */,
+				B60806D62B63D9090048646B /* Entity */,
 			);
 			path = "UI Layer";
 			sourceTree = "<group>";

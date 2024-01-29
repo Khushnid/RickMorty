@@ -8,11 +8,10 @@
 import Foundation
 
 struct MortyHashed: Hashable {
-    let hasherID: UUID
-    let model: MortyModelResult
+    let hasherID = UUID()
+    let model: MortyModel.MortyModelResult
     
-    init(hasherID: UUID = UUID(), _ model: MortyModelResult) {
-        self.hasherID = hasherID
+    init(model: MortyModel.MortyModelResult) {
         self.model = model
     }
 
