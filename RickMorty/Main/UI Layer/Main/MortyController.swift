@@ -29,27 +29,23 @@ private extension MortyController {
         title = "Rick & Morty"
         
         rootView.onNewPageRequest = { [weak self] in
-            guard let self, !nextPage.isEmpty else { return }
-            fetchCharacters(link: nextPage)
+            self?.fetchCharacters()
         }
     }
     
-    func fetchCharacters(link: String = "") {
+    func fetchCharacters() {
         Task {
             do {
-                handleResults(try await MortyManager.shared.fetchCharacter(link: link))
+                let endPoint = nextPage.isEmpty ? MortyManager.charcterURL : nextPage
+                let characters = try await MortyManager.shared.fetchCharacter(link: endPoint)
+ 
+                nextPage = characters.info?.next ?? ""
+                rootView.setDataSource(dataSource: characters.results ?? [])
             } catch {
                 showAlert(title: "Error occured", message: error.localizedDescription) {
                     self.fetchCharacters()
                 }
             }
         }
-    }
-    
-    func handleResults(_ result: MortyModel) {
-        nextPage = result.info?.next ?? ""
-        
-        guard let results = result.results else { return }
-        rootView.setDataSource(dataSource: results)
     }
 }
