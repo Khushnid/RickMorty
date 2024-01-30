@@ -63,9 +63,10 @@ class MortyContentCell: UITableViewCell {
     func setupContentData(data: MortyModel.MortyModelResult) {
         if let url = data.image, let imageURL = URL(string: url) {
             image.kf.setImage(with: imageURL, placeholder: Constants.loaderImage)
+        } else {
+            image.image = Constants.loaderImage
         }
        
-        
         if let name = data.name, state(name) {
             let characterName = labelGenerate(name, true)
             horizontalTitleStackView.addArrangedSubview(characterName)

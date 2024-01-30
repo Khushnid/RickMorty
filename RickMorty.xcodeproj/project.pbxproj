@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		B60806D82B63D9170048646B /* MortyHashed.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60806D72B63D9170048646B /* MortyHashed.swift */; };
+		B62607912B690E120022CB11 /* RickMortySnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62607902B690E120022CB11 /* RickMortySnapshotTests.swift */; };
+		B62607992B690F0B0022CB11 /* InlineSnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = B62607982B690F0B0022CB11 /* InlineSnapshotTesting */; };
+		B626079B2B690F0B0022CB11 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = B626079A2B690F0B0022CB11 /* SnapshotTesting */; };
+		B626079D2B69107D0022CB11 /* RickMortyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B626079C2B69107D0022CB11 /* RickMortyTests.swift */; };
 		B67F2E762B56456A00998344 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67F2E752B56456A00998344 /* AppDelegate.swift */; };
 		B67F2E782B56456A00998344 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67F2E772B56456A00998344 /* SceneDelegate.swift */; };
 		B67F2E7A2B56456A00998344 /* MortyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67F2E792B56456A00998344 /* MortyController.swift */; };
@@ -23,8 +27,21 @@
 		B67F2EA22B56A94700998344 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = B67F2EA12B56A94700998344 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		B62607922B690E120022CB11 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B67F2E6A2B56456A00998344 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B67F2E712B56456A00998344;
+			remoteInfo = RickMorty;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		B60806D72B63D9170048646B /* MortyHashed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MortyHashed.swift; sourceTree = "<group>"; };
+		B626078E2B690E120022CB11 /* RickMortyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RickMortyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B62607902B690E120022CB11 /* RickMortySnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RickMortySnapshotTests.swift; sourceTree = "<group>"; };
+		B626079C2B69107D0022CB11 /* RickMortyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RickMortyTests.swift; sourceTree = "<group>"; };
 		B67F2E722B56456A00998344 /* RickMorty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickMorty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B67F2E752B56456A00998344 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B67F2E772B56456A00998344 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -42,6 +59,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		B626078B2B690E120022CB11 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B62607992B690F0B0022CB11 /* InlineSnapshotTesting in Frameworks */,
+				B626079B2B690F0B0022CB11 /* SnapshotTesting in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B67F2E6F2B56456A00998344 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -71,10 +97,20 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		B626078F2B690E120022CB11 /* RickMortyTests */ = {
+			isa = PBXGroup;
+			children = (
+				B626079C2B69107D0022CB11 /* RickMortyTests.swift */,
+				B62607902B690E120022CB11 /* RickMortySnapshotTests.swift */,
+			);
+			path = RickMortyTests;
+			sourceTree = "<group>";
+		};
 		B67F2E692B56456A00998344 = {
 			isa = PBXGroup;
 			children = (
 				B67F2E742B56456A00998344 /* RickMorty */,
+				B626078F2B690E120022CB11 /* RickMortyTests */,
 				B67F2E732B56456A00998344 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -83,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				B67F2E722B56456A00998344 /* RickMorty.app */,
+				B626078E2B690E120022CB11 /* RickMortyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -157,6 +194,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		B626078D2B690E120022CB11 /* RickMortyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B62607962B690E120022CB11 /* Build configuration list for PBXNativeTarget "RickMortyTests" */;
+			buildPhases = (
+				B626078A2B690E120022CB11 /* Sources */,
+				B626078B2B690E120022CB11 /* Frameworks */,
+				B626078C2B690E120022CB11 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B62607932B690E120022CB11 /* PBXTargetDependency */,
+			);
+			name = RickMortyTests;
+			packageProductDependencies = (
+				B62607982B690F0B0022CB11 /* InlineSnapshotTesting */,
+				B626079A2B690F0B0022CB11 /* SnapshotTesting */,
+			);
+			productName = RickMortyTests;
+			productReference = B626078E2B690E120022CB11 /* RickMortyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		B67F2E712B56456A00998344 /* RickMorty */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B67F2E862B56456B00998344 /* Build configuration list for PBXNativeTarget "RickMorty" */;
@@ -187,6 +246,10 @@
 				LastSwiftUpdateCheck = 1520;
 				LastUpgradeCheck = 1520;
 				TargetAttributes = {
+					B626078D2B690E120022CB11 = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = B67F2E712B56456A00998344;
+					};
 					B67F2E712B56456A00998344 = {
 						CreatedOnToolsVersion = 15.2;
 					};
@@ -203,17 +266,26 @@
 			mainGroup = B67F2E692B56456A00998344;
 			packageReferences = (
 				B67F2EA02B56A94700998344 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				B62607972B690F0B0022CB11 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 			);
 			productRefGroup = B67F2E732B56456A00998344 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				B67F2E712B56456A00998344 /* RickMorty */,
+				B626078D2B690E120022CB11 /* RickMortyTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		B626078C2B690E120022CB11 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B67F2E702B56456A00998344 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -226,6 +298,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		B626078A2B690E120022CB11 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B626079D2B69107D0022CB11 /* RickMortyTests.swift in Sources */,
+				B62607912B690E120022CB11 /* RickMortySnapshotTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B67F2E6E2B56456A00998344 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -246,6 +327,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		B62607932B690E120022CB11 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B67F2E712B56456A00998344 /* RickMorty */;
+			targetProxy = B62607922B690E120022CB11 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		B67F2E802B56456B00998344 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -258,6 +347,42 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		B62607942B690E120022CB11 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = LVML7564ED;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.9b2244dd8eec6ace.RickMortyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RickMorty.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RickMorty";
+			};
+			name = Debug;
+		};
+		B62607952B690E120022CB11 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = LVML7564ED;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.9b2244dd8eec6ace.RickMortyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RickMorty.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RickMorty";
+			};
+			name = Release;
+		};
 		B67F2E842B56456B00998344 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -436,6 +561,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B62607962B690E120022CB11 /* Build configuration list for PBXNativeTarget "RickMortyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B62607942B690E120022CB11 /* Debug */,
+				B62607952B690E120022CB11 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B67F2E6D2B56456A00998344 /* Build configuration list for PBXProject "RickMorty" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -457,6 +591,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B62607972B690F0B0022CB11 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 1.15.2;
+			};
+		};
 		B67F2EA02B56A94700998344 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -468,6 +610,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B62607982B690F0B0022CB11 /* InlineSnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B62607972B690F0B0022CB11 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = InlineSnapshotTesting;
+		};
+		B626079A2B690F0B0022CB11 /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B62607972B690F0B0022CB11 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
+		};
 		B67F2EA12B56A94700998344 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B67F2EA02B56A94700998344 /* XCRemoteSwiftPackageReference "Kingfisher" */;

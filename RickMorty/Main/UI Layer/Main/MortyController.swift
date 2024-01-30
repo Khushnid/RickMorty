@@ -22,6 +22,10 @@ class MortyController: UIViewController {
         setupController()
         fetchCharacters()
     }
+    
+    func setDataSource(dataSource: [MortyModel.MortyModelResult]) {
+        rootView.setDataSource(dataSource: dataSource)
+    }
 }
 
 private extension MortyController {
@@ -40,7 +44,7 @@ private extension MortyController {
                 let characters = try await MortyManager.shared.fetchCharacter(link: endPoint)
  
                 nextPage = characters.info?.next ?? ""
-                rootView.setDataSource(dataSource: characters.results ?? [])
+                setDataSource(dataSource: characters.results ?? [])
             } catch {
                 showAlert(title: "Error occured", message: error.localizedDescription) {
                     self.fetchCharacters()
