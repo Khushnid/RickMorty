@@ -42,6 +42,7 @@
 		B626078E2B690E120022CB11 /* RickMortyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RickMortyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B62607902B690E120022CB11 /* RickMortySnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RickMortySnapshotTests.swift; sourceTree = "<group>"; };
 		B626079C2B69107D0022CB11 /* RickMortyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RickMortyTests.swift; sourceTree = "<group>"; };
+		B626079E2B6911F60022CB11 /* RickMorty.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = RickMorty.xctestplan; sourceTree = "<group>"; };
 		B67F2E722B56456A00998344 /* RickMorty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickMorty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B67F2E752B56456A00998344 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B67F2E772B56456A00998344 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +110,7 @@
 		B67F2E692B56456A00998344 = {
 			isa = PBXGroup;
 			children = (
+				B626079E2B6911F60022CB11 /* RickMorty.xctestplan */,
 				B67F2E742B56456A00998344 /* RickMorty */,
 				B626078F2B690E120022CB11 /* RickMortyTests */,
 				B67F2E732B56456A00998344 /* Products */,

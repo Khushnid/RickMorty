@@ -1,0 +1,28 @@
+{
+  "configurations" : [
+    {
+      "id" : "94F39F5C-38BB-4D3A-8824-C08A580BE163",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:RickMorty.xcodeproj",
+      "identifier" : "B67F2E712B56456A00998344",
+      "name" : "RickMorty"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:RickMorty.xcodeproj",
+        "identifier" : "B626078D2B690E120022CB11",
+        "name" : "RickMortyTests"
+      }
+    }
+  ],
+  "version" : 1
+}
