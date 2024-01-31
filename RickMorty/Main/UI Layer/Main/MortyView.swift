@@ -9,11 +9,6 @@ import UIKit
 
 class MortyView: UIView {
     var onNewPageRequest: (() -> Void)?
-    
-    enum MortySection {
-        case main
-    }
-    
     var dataSource: UITableViewDiffableDataSource<MortySection, MortyHashed>!
     
     private var networkDTO = [MortyModel.MortyModelResult]() {
@@ -38,7 +33,7 @@ class MortyView: UIView {
     }()
     
     func setDataSource(dataSource: [MortyModel.MortyModelResult]) {
-        self.networkDTO += dataSource
+        networkDTO += dataSource
     }
     
     func setupMortyView() {

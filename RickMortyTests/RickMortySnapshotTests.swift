@@ -12,18 +12,11 @@ import SnapshotTesting
 final class RickMortySnapshotTests: XCTestCase {
     func test_contentWithNoData() {
         let sut = makeSut()
-        
-        sut.overrideUserInterfaceStyle = .dark
-        sut.loadViewIfNeeded()
-        
         assertSnapshot(of: sut, as: .image, record: false)
     }
     
     func test_contentWithDataAndLoader() {
         let sut = makeSut()
-        
-        sut.overrideUserInterfaceStyle = .dark
-        sut.loadViewIfNeeded()
         sut.loadWithContent()
 
         assertSnapshot(of: sut, as: .image, record: false)
@@ -31,9 +24,6 @@ final class RickMortySnapshotTests: XCTestCase {
     
     func test_contentWithMissingDetailsAndLoader() {
         let sut = makeSut()
-        
-        sut.overrideUserInterfaceStyle = .dark
-        sut.loadViewIfNeeded()
         sut.loadContentWithMissingDetails()
 
         assertSnapshot(of: sut, as: .image, record: false)
@@ -43,6 +33,8 @@ final class RickMortySnapshotTests: XCTestCase {
 private extension RickMortySnapshotTests {
     func makeSut() -> MortyController {
         let sut = MortyController()
+        sut.overrideUserInterfaceStyle = .dark
+        sut.loadViewIfNeeded()
         return sut
     }
 }

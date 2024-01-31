@@ -19,22 +19,14 @@ class MortyController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupController()
-        fetchCharacters()
-    }
-    
-    func setDataSource(dataSource: [MortyModel.MortyModelResult]) {
-        rootView.setDataSource(dataSource: dataSource)
-    }
-}
-
-private extension MortyController {
-    func setupController() {
         title = "Rick & Morty"
         
         rootView.onNewPageRequest = { [weak self] in
-            self?.fetchCharacters()
+            guard let self else { return }
+            fetchCharacters()
         }
+        
+        fetchCharacters()
     }
     
     func fetchCharacters() {
@@ -51,5 +43,9 @@ private extension MortyController {
                 }
             }
         }
+    }
+    
+    func setDataSource(dataSource: [MortyModel.MortyModelResult]) {
+        rootView.setDataSource(dataSource: dataSource)
     }
 }

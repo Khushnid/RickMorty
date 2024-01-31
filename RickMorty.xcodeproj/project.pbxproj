@@ -12,6 +12,7 @@
 		B62607992B690F0B0022CB11 /* InlineSnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = B62607982B690F0B0022CB11 /* InlineSnapshotTesting */; };
 		B626079B2B690F0B0022CB11 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = B626079A2B690F0B0022CB11 /* SnapshotTesting */; };
 		B626079D2B69107D0022CB11 /* RickMortyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B626079C2B69107D0022CB11 /* RickMortyTests.swift */; };
+		B62607A02B6A02960022CB11 /* MortySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B626079F2B6A02960022CB11 /* MortySection.swift */; };
 		B67F2E762B56456A00998344 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67F2E752B56456A00998344 /* AppDelegate.swift */; };
 		B67F2E782B56456A00998344 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67F2E772B56456A00998344 /* SceneDelegate.swift */; };
 		B67F2E7A2B56456A00998344 /* MortyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67F2E792B56456A00998344 /* MortyController.swift */; };
@@ -43,6 +44,7 @@
 		B62607902B690E120022CB11 /* RickMortySnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RickMortySnapshotTests.swift; sourceTree = "<group>"; };
 		B626079C2B69107D0022CB11 /* RickMortyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RickMortyTests.swift; sourceTree = "<group>"; };
 		B626079E2B6911F60022CB11 /* RickMorty.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = RickMorty.xctestplan; sourceTree = "<group>"; };
+		B626079F2B6A02960022CB11 /* MortySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MortySection.swift; sourceTree = "<group>"; };
 		B67F2E722B56456A00998344 /* RickMorty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickMorty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B67F2E752B56456A00998344 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B67F2E772B56456A00998344 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 			children = (
 				B67F2E8D2B56553300998344 /* MortyModel.swift */,
 				B60806D72B63D9170048646B /* MortyHashed.swift */,
+				B626079F2B6A02960022CB11 /* MortySection.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B67F2E902B5656F600998344 /* MortyView.swift in Sources */,
+				B62607A02B6A02960022CB11 /* MortySection.swift in Sources */,
 				B67F2E922B56642500998344 /* MortyManager+Helpers.swift in Sources */,
 				B67F2E9D2B56887900998344 /* UIViewController+Extensions.swift in Sources */,
 				B67F2E7A2B56456A00998344 /* MortyController.swift in Sources */,
