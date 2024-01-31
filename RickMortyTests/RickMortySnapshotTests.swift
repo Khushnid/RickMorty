@@ -24,14 +24,36 @@ final class RickMortySnapshotTests: XCTestCase {
         
         sut.overrideUserInterfaceStyle = .dark
         sut.loadViewIfNeeded()
-        sut.loadWithContentAndLoader()
+        sut.loadWithContent()
+
+        assertSnapshot(of: sut, as: .image, record: false)
+    }
+    
+    func test_contentWithMissingDetailsAndLoader() {
+        let sut = MortyController()
+        
+        sut.overrideUserInterfaceStyle = .dark
+        sut.loadViewIfNeeded()
+        sut.loadContentWithMissingDetails()
 
         assertSnapshot(of: sut, as: .image, record: false)
     }
 }
 
 fileprivate extension MortyController {
-    func loadWithContentAndLoader() {
+    func loadContentWithMissingDetails() {
+        setDataSource(dataSource: [
+            MortyModel.MortyModelResult(
+                gender: "Male",
+                location: MortyModel.MortyModelResult.MortyModelLocation(
+                    name: "Citadel of Ricks",
+                    url: ""
+                )
+            )
+        ])
+    }
+    
+    func loadWithContent() {
         setDataSource(dataSource: [
             MortyModel.MortyModelResult(
                 name: "Rick Sanchez",

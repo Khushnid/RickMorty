@@ -16,6 +16,24 @@ struct MortyModel: Codable {
     }
     
     struct MortyModelResult: Codable {
+        init(
+            name: String? = nil,
+            status: String? = nil,
+            species: String? = nil,
+            gender: String? = nil,
+            image: String? = nil,
+            origin: MortyModel.MortyModelResult.MortyModelLocation? = nil,
+            location: MortyModel.MortyModelResult.MortyModelLocation? = nil
+        ) {
+            self.name = name
+            self.status = status
+            self.species = species
+            self.gender = gender
+            self.image = image
+            self.origin = origin
+            self.location = location
+        }
+        
         let name, status, species, gender, image: String?
         let origin, location: MortyModelLocation?
         
