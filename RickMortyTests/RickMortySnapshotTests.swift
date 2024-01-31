@@ -11,7 +11,7 @@ import SnapshotTesting
 
 final class RickMortySnapshotTests: XCTestCase {
     func test_contentWithNoData() {
-        let sut = MortyController()
+        let sut = makeSut()
         
         sut.overrideUserInterfaceStyle = .dark
         sut.loadViewIfNeeded()
@@ -20,7 +20,7 @@ final class RickMortySnapshotTests: XCTestCase {
     }
     
     func test_contentWithDataAndLoader() {
-        let sut = MortyController()
+        let sut = makeSut()
         
         sut.overrideUserInterfaceStyle = .dark
         sut.loadViewIfNeeded()
@@ -30,7 +30,7 @@ final class RickMortySnapshotTests: XCTestCase {
     }
     
     func test_contentWithMissingDetailsAndLoader() {
-        let sut = MortyController()
+        let sut = makeSut()
         
         sut.overrideUserInterfaceStyle = .dark
         sut.loadViewIfNeeded()
@@ -40,19 +40,14 @@ final class RickMortySnapshotTests: XCTestCase {
     }
 }
 
-fileprivate extension MortyController {
-    func loadContentWithMissingDetails() {
-        setDataSource(dataSource: [
-            MortyModel.MortyModelResult(
-                gender: "Male",
-                location: MortyModel.MortyModelResult.MortyModelLocation(
-                    name: "Citadel of Ricks",
-                    url: ""
-                )
-            )
-        ])
+private extension RickMortySnapshotTests {
+    func makeSut() -> MortyController {
+        let sut = MortyController()
+        return sut
     }
-    
+}
+
+fileprivate extension MortyController {
     func loadWithContent() {
         setDataSource(dataSource: [
             MortyModel.MortyModelResult(
@@ -75,6 +70,18 @@ fileprivate extension MortyController {
                 gender: "Male",
                 image: nil,
                 origin: nil,
+                location: MortyModel.MortyModelResult.MortyModelLocation(
+                    name: "Citadel of Ricks",
+                    url: ""
+                )
+            )
+        ])
+    }
+    
+    func loadContentWithMissingDetails() {
+        setDataSource(dataSource: [
+            MortyModel.MortyModelResult(
+                gender: "Male",
                 location: MortyModel.MortyModelResult.MortyModelLocation(
                     name: "Citadel of Ricks",
                     url: ""
