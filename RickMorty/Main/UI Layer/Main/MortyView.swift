@@ -69,6 +69,7 @@ class MortyView: UIView {
     
     func stopLoadItems() {
         tableLoader.stopAnimating()
+        tableView.tableFooterView?.isHidden = true
     }
 }
 

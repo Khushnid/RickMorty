@@ -8,11 +8,11 @@
 import UIKit
 
 class MortyController: UIViewController {
+    private var paginationInfo: MortyModel.MortyModelInfo
     private let rootView = MortyView()
-    private var nextPage: String
     
-    init(nextPage: String) {
-        self.nextPage = nextPage
+    init(nextPage: MortyModel.MortyModelInfo) {
+        self.paginationInfo = nextPage
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -37,15 +37,17 @@ class MortyController: UIViewController {
         
         fetchCharacters()
     }
-    
+}
+
+private extension MortyController {
     func fetchCharacters() {
         Task {
             do {
-                let characters = try await MortyManager.shared.fetchCharacter(link: nextPage)
-                guard let nextPageURL = characters.info?.next, nextPage != nextPageURL else { return rootView.stopLoadItems() }
-
+                guard let nextPageURL = paginationInfo.next else { return rootView.stopLoadItems() }
+                let characters = try await MortyManager.shared.fetchCharacter(link: nextPageURL)
+                
                 setDataSource(dataSource: characters.results ?? [])
-                nextPage = nextPageURL
+                paginationInfo = characters.info
             } catch {
                 showAlert(title: "Error occured", message: error.localizedDescription) {
                     self.fetchCharacters()

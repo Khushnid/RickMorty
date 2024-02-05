@@ -8,11 +8,19 @@
 import Foundation
 
 struct MortyModel: Codable {
-    let info: MortyModelInfo?
+    let info: MortyModelInfo
     let results: [MortyModelResult]?
     
     struct MortyModelInfo: Codable {
-        let next: String?
+        let next, prev: String?
+        let count, pages: Int
+        
+        init(next: String, prev: String = "", count: Int = 0, pages: Int = 0) {
+            self.next = next
+            self.prev = prev
+            self.count = count
+            self.pages = pages
+        }
     }
     
     struct MortyModelResult: Codable {
