@@ -8,8 +8,8 @@
 import UIKit
 
 class MortyController: UIViewController {
+    let rootView = MortyView()
     private var paginationInfo: MortyModel.MortyModelInfo
-    private let rootView = MortyView()
     
     init(nextPage: MortyModel.MortyModelInfo) {
         self.paginationInfo = nextPage

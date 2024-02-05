@@ -11,7 +11,7 @@ class MortyView: UIView {
     var onNewPageRequest: (() -> Void)?
     var dataSource: UITableViewDiffableDataSource<MortySection, MortyHashed>!
     
-    private var networkDTO = [MortyModel.MortyModelResult]() {
+    var networkDTO = [MortyModel.MortyModelResult]() {
         didSet { applySnapshot() }
     }
     

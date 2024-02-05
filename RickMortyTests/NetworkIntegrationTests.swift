@@ -51,4 +51,25 @@ final class NetworkIntegrationTests: XCTestCase {
             XCTFail("Can't load from `Morty` server. Reason: \n\(error.localizedDescription)")
         }
     }
+    
+    func test_compareRenderedItemsCountWithNetworkResponseCount() async {
+        let sut = await MortyController(nextPage: MortyModel.MortyModelInfo(next: MortyManager.charcterURL))
+        await sut.loadViewIfNeeded()
+        
+        let op1 = expectation(description: "Need to wait for response from `Morty` server")
+        op1.fulfill()
+        await fulfillment(of: [op1], timeout: 2.0)
+        
+        let response = try? await MortyManager.shared.fetchCharacter(link: MortyManager.charcterURL)
+       
+        let renderedItems = await sut.numberOfRenderedItems()
+        XCTAssertEqual(renderedItems, response?.results?.count ?? 0)
+    }
+}
+
+/// DLS Helper
+fileprivate extension MortyController {
+    func numberOfRenderedItems() -> Int {
+        rootView.networkDTO.count
+    }
 }
