@@ -11,7 +11,7 @@
 		B62607912B690E120022CB11 /* RickMortySnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62607902B690E120022CB11 /* RickMortySnapshotTests.swift */; };
 		B62607992B690F0B0022CB11 /* InlineSnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = B62607982B690F0B0022CB11 /* InlineSnapshotTesting */; };
 		B626079B2B690F0B0022CB11 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = B626079A2B690F0B0022CB11 /* SnapshotTesting */; };
-		B626079D2B69107D0022CB11 /* RickMortyIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B626079C2B69107D0022CB11 /* RickMortyIntegrationTests.swift */; };
+		B626079D2B69107D0022CB11 /* NetworkIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B626079C2B69107D0022CB11 /* NetworkIntegrationTests.swift */; };
 		B62607A02B6A02960022CB11 /* MortySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B626079F2B6A02960022CB11 /* MortySection.swift */; };
 		B67F2E762B56456A00998344 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67F2E752B56456A00998344 /* AppDelegate.swift */; };
 		B67F2E782B56456A00998344 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67F2E772B56456A00998344 /* SceneDelegate.swift */; };
@@ -42,7 +42,7 @@
 		B60806D72B63D9170048646B /* MortyHashed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MortyHashed.swift; sourceTree = "<group>"; };
 		B626078E2B690E120022CB11 /* RickMortyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RickMortyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B62607902B690E120022CB11 /* RickMortySnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RickMortySnapshotTests.swift; sourceTree = "<group>"; };
-		B626079C2B69107D0022CB11 /* RickMortyIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RickMortyIntegrationTests.swift; sourceTree = "<group>"; };
+		B626079C2B69107D0022CB11 /* NetworkIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkIntegrationTests.swift; sourceTree = "<group>"; };
 		B626079E2B6911F60022CB11 /* RickMorty.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = RickMorty.xctestplan; sourceTree = "<group>"; };
 		B626079F2B6A02960022CB11 /* MortySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MortySection.swift; sourceTree = "<group>"; };
 		B67F2E722B56456A00998344 /* RickMorty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickMorty.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,7 +104,7 @@
 		B626078F2B690E120022CB11 /* RickMortyTests */ = {
 			isa = PBXGroup;
 			children = (
-				B626079C2B69107D0022CB11 /* RickMortyIntegrationTests.swift */,
+				B626079C2B69107D0022CB11 /* NetworkIntegrationTests.swift */,
 				B62607902B690E120022CB11 /* RickMortySnapshotTests.swift */,
 			);
 			path = RickMortyTests;
@@ -307,7 +307,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B626079D2B69107D0022CB11 /* RickMortyIntegrationTests.swift in Sources */,
+				B626079D2B69107D0022CB11 /* NetworkIntegrationTests.swift in Sources */,
 				B62607912B690E120022CB11 /* RickMortySnapshotTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

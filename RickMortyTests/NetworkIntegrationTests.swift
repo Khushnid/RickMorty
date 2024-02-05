@@ -8,7 +8,13 @@
 import XCTest
 @testable import RickMorty
 
-final class RickMortyIntegrationTests: XCTestCase {
+final class NetworkIntegrationTests: XCTestCase {
+    /// These tests involve actual network requests, which can be resource-intensive.
+    /// Consider placing them in a separate test scheme to avoid unnecessary costs.
+
+    /// Example:
+    /// `NetworkIntegrationTests` scheme for tests requiring network requests.
+    
     func test_canLoadItemsFromServer() async {
         do {
             let sut = try await MortyManager.shared.fetchCharacter(link: MortyManager.charcterURL)
