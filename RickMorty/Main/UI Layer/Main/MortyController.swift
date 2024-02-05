@@ -32,28 +32,31 @@ class MortyController: UIViewController {
         
         rootView.onNewPageRequest = { [weak self] in
             guard let self else { return }
-            fetchCharacters()
+            fetchTasks()
         }
         
-        fetchCharacters()
+        fetchTasks()
     }
 }
 
-private extension MortyController {
-    func fetchCharacters() {
-        Task {
-            do {
-                guard let nextPageURL = paginationInfo.next else { return rootView.stopLoadItems() }
-                let characters = try await MortyManager.shared.fetchCharacter(link: nextPageURL)
-                
-                setDataSource(dataSource: characters.results ?? [])
-                paginationInfo = characters.info
-            } catch {
-                showAlert(title: "Error occured", message: error.localizedDescription) {
-                    self.fetchCharacters()
-                }
+extension MortyController {
+    func fetchCharacters() async {
+        do {
+            guard let nextPageURL = paginationInfo.next else { return rootView.stopLoadItems() }
+            let characters = try await MortyManager.shared.fetchCharacter(link: nextPageURL)
+            
+            setDataSource(dataSource: characters.results ?? [])
+            paginationInfo = characters.info
+        } catch {
+            showAlert(title: "Error occured", message: error.localizedDescription) { [weak self] in
+                guard let self else { return }
+                fetchTasks()
             }
         }
+    }
+    
+    func fetchTasks() {
+        Task { await fetchCharacters() }
     }
     
     func setDataSource(dataSource: [MortyModel.MortyModelResult]) {

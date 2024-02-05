@@ -12,27 +12,27 @@ import SnapshotTesting
 final class RickMortySnapshotTests: XCTestCase {
     func test_contentWithNoData() {
         let sut = makeSut()
-        assertSnapshot(of: sut, as: .image, record: false)
+        assertSnapshot(of: sut, as: .image(on: .iPhoneX), record: false)
     }
     
     func test_contentWithDataAndLoader() {
         let sut = makeSut()
         sut.loadWithContent()
 
-        assertSnapshot(of: sut, as: .image, record: false)
+        assertSnapshot(of: sut, as: .image(on: .iPhoneX), record: false)
     }
     
     func test_contentWithMissingDetailsAndLoader() {
         let sut = makeSut()
         sut.loadContentWithMissingDetails()
 
-        assertSnapshot(of: sut, as: .image, record: false)
+        assertSnapshot(of: sut, as: .image(on: .iPhoneX), record: false)
     }
 }
 
 private extension RickMortySnapshotTests {
     func makeSut() -> MortyController {
-        let sut = MortyController()
+        let sut = MortyController(nextPage: MortyModel.MortyModelInfo(next: ""))
         sut.overrideUserInterfaceStyle = .dark
         sut.loadViewIfNeeded()
         return sut
