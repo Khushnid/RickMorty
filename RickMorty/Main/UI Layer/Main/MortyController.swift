@@ -8,8 +8,17 @@
 import UIKit
 
 class MortyController: UIViewController {
-    private var nextPage = ""
     private let rootView = MortyView()
+    private var nextPage: String
+    
+    init(nextPage: String) {
+        self.nextPage = nextPage
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
     
     override func loadView() {
         view = rootView
@@ -32,11 +41,11 @@ class MortyController: UIViewController {
     func fetchCharacters() {
         Task {
             do {
-                let endPoint = nextPage.isEmpty ? MortyManager.charcterURL : nextPage
-                let characters = try await MortyManager.shared.fetchCharacter(link: endPoint)
- 
-                nextPage = characters.info?.next ?? ""
+                let characters = try await MortyManager.shared.fetchCharacter(link: nextPage)
+                guard let nextPageURL = characters.info?.next, nextPage != nextPageURL else { return rootView.stopLoadItems() }
+
                 setDataSource(dataSource: characters.results ?? [])
+                nextPage = nextPageURL
             } catch {
                 showAlert(title: "Error occured", message: error.localizedDescription) {
                     self.fetchCharacters()

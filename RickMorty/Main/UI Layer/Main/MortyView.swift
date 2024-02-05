@@ -66,6 +66,10 @@ class MortyView: UIView {
         currentSnapshot.appendItems(networkDTO.compactMap { MortyHashed(model: $0) })
         dataSource.apply(currentSnapshot, animatingDifferences: false)
     }
+    
+    func stopLoadItems() {
+        tableLoader.stopAnimating()
+    }
 }
 
 extension MortyView: UITableViewDelegate {
