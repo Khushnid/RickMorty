@@ -17,11 +17,7 @@ final class NetworkIntegrationTests: XCTestCase {
     
     func test_canLoadItemsFromServer() async {
         do {
-            let networkExpectation = expectation(description: "Need to wait for response from `Morty` server")
             let sut = try await MortyManager.shared.fetchCharacter(link: MortyManager.charcterURL)
-            networkExpectation.fulfill()
-
-            await fulfillment(of: [networkExpectation], timeout: 2.0)
             guard let results = sut.results else { return XCTFail("No items founded or loaded from `Morty` server") }
 
             XCTAssertFalse(results.isEmpty)
@@ -32,18 +28,10 @@ final class NetworkIntegrationTests: XCTestCase {
     
     func test_loadsNextPageOnRequest() async {
         do {
-            let op1 = expectation(description: "Need to wait for response from `Morty` server")
             let firstPageResponse = try await MortyManager.shared.fetchCharacter(link: MortyManager.charcterURL)
-            op1.fulfill()
-            
-            await fulfillment(of: [op1], timeout: 2.0)
             guard let resultsReponseOne = firstPageResponse.results else { return XCTFail("No items founded or loaded from `Morty` server") }
-            
-            let op2 = expectation(description: "Need to wait for response from `Morty` server")
+           
             let secondPageResponse = try await MortyManager.shared.fetchCharacter(link: "\(MortyManager.charcterURL)?page=2")
-            op2.fulfill()
-            
-            await fulfillment(of: [op2], timeout: 2.0)
             guard let resultsReponseTwo = secondPageResponse.results else { return XCTFail("No items founded or loaded from `Morty` server") }
             
             XCTAssertTrue((resultsReponseOne + resultsReponseTwo).count > resultsReponseTwo.count)
@@ -53,17 +41,19 @@ final class NetworkIntegrationTests: XCTestCase {
     }
     
     func test_compareRenderedItemsCountWithNetworkResponseCount() async {
-        let sut = await MortyController(nextPage: MortyModel.MortyModelInfo(next: MortyManager.charcterURL))
-        await sut.loadViewIfNeeded()
-        
-        let op1 = expectation(description: "Need to wait for response from `Morty` server")
-        op1.fulfill()
-        await fulfillment(of: [op1], timeout: 2.0)
-        
-        let response = try? await MortyManager.shared.fetchCharacter(link: MortyManager.charcterURL)
-       
-        let renderedItems = await sut.numberOfRenderedItems()
-        XCTAssertEqual(renderedItems, response?.results?.count ?? 0)
+        do {
+            let sut = await MortyController(nextPage: MortyModel.MortyModelInfo(next: MortyManager.charcterURL))
+            await sut.fetchTasks()
+            await sut.loadViewIfNeeded()
+            
+            let response = try await MortyManager.shared.fetchCharacter(link: MortyManager.charcterURL)
+            let renderedItems = await sut.numberOfRenderedItems()
+
+            guard let loadedItemsCount = response.results?.count else { return XCTFail("No items founded or loaded from `Morty` server") }
+            XCTAssertEqual(renderedItems, loadedItemsCount)
+        } catch {
+            XCTFail("Can't load from `Morty` server. Reason: \n\(error.localizedDescription)")
+        }
     }
 }
 
