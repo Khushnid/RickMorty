@@ -11,6 +11,7 @@
 		B60874BA2B72358100C9364E /* CharactersModelInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60874B92B72358100C9364E /* CharactersModelInfo.swift */; };
 		B60874BC2B72358900C9364E /* CharactersModelResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60874BB2B72358900C9364E /* CharactersModelResult.swift */; };
 		B60874C12B72380400C9364E /* CharacterDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60874C02B72380300C9364E /* CharacterDetailsController.swift */; };
+		B60874C32B723B6B00C9364E /* XCTestCase+MemoryLeakDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60874C22B723B6B00C9364E /* XCTestCase+MemoryLeakDetector.swift */; };
 		B62607912B690E120022CB11 /* RickMortySnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62607902B690E120022CB11 /* RickMortySnapshotTests.swift */; };
 		B62607992B690F0B0022CB11 /* InlineSnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = B62607982B690F0B0022CB11 /* InlineSnapshotTesting */; };
 		B626079B2B690F0B0022CB11 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = B626079A2B690F0B0022CB11 /* SnapshotTesting */; };
@@ -46,6 +47,7 @@
 		B60874B92B72358100C9364E /* CharactersModelInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersModelInfo.swift; sourceTree = "<group>"; };
 		B60874BB2B72358900C9364E /* CharactersModelResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersModelResult.swift; sourceTree = "<group>"; };
 		B60874C02B72380300C9364E /* CharacterDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsController.swift; sourceTree = "<group>"; };
+		B60874C22B723B6B00C9364E /* XCTestCase+MemoryLeakDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakDetector.swift"; sourceTree = "<group>"; };
 		B626078E2B690E120022CB11 /* RickMortyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RickMortyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B62607902B690E120022CB11 /* RickMortySnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RickMortySnapshotTests.swift; sourceTree = "<group>"; };
 		B626079C2B69107D0022CB11 /* NetworkIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkIntegrationTests.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				B60874B72B71F16A00C9364E /* XCTestCase+Helpers.swift */,
+				B60874C22B723B6B00C9364E /* XCTestCase+MemoryLeakDetector.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B60874C32B723B6B00C9364E /* XCTestCase+MemoryLeakDetector.swift in Sources */,
 				B60874B82B71F16A00C9364E /* XCTestCase+Helpers.swift in Sources */,
 				B626079D2B69107D0022CB11 /* NetworkIntegrationTests.swift in Sources */,
 				B62607912B690E120022CB11 /* RickMortySnapshotTests.swift in Sources */,

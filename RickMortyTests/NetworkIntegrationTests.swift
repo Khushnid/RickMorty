@@ -38,16 +38,17 @@ final class NetworkIntegrationTests: XCTestCase {
     
     func test_compareRenderedItemsCountWithNetworkResponseCount() {
         runAsyncTest {
-            let sut = await CharactersController(
+            let controller = await CharactersController(
                 nextPage: CharactersModelInfo(next: MortyManager.charcterURL),
                 production: false
             )
             
-            await sut.loadViewIfNeeded()
+            self.trackForMemoryLeaks(for: controller)
+            await controller.loadViewIfNeeded()
             
-            await sut.fetchCharacters {
+            await controller.fetchCharacters {
                 let response = try await MortyManager.shared.fetchCharacter(link: MortyManager.charcterURL)
-                let renderedItems = await sut.rootView.networkDTO.count
+                let renderedItems = await controller.rootView.networkDTO.count
 
                 guard let loadedItemsCount = response.results?.count else { return XCTFail("No items founded or loaded from `Morty` server") }
                 XCTAssertEqual(renderedItems, loadedItemsCount)

@@ -32,10 +32,14 @@ final class RickMortySnapshotTests: XCTestCase {
 
 private extension RickMortySnapshotTests {
     func makeSut() -> CharactersController {
-        let sut = CharactersController(nextPage: CharactersModelInfo(next: ""))
-        sut.overrideUserInterfaceStyle = .dark
-        sut.loadViewIfNeeded()
-        return sut
+        let controller = CharactersController(
+            nextPage: CharactersModelInfo(next: MortyManager.charcterURL),
+            production: false
+        )
+        
+        controller.overrideUserInterfaceStyle = .dark
+        controller.loadViewIfNeeded()
+        return controller
     }
 }
 
