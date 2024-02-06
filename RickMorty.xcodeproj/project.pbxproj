@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B60806D82B63D9170048646B /* MortyHashed.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60806D72B63D9170048646B /* MortyHashed.swift */; };
+		B60874B82B71F16A00C9364E /* XCTestCase+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60874B72B71F16A00C9364E /* XCTestCase+Helpers.swift */; };
 		B62607912B690E120022CB11 /* RickMortySnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62607902B690E120022CB11 /* RickMortySnapshotTests.swift */; };
 		B62607992B690F0B0022CB11 /* InlineSnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = B62607982B690F0B0022CB11 /* InlineSnapshotTesting */; };
 		B626079B2B690F0B0022CB11 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = B626079A2B690F0B0022CB11 /* SnapshotTesting */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		B60806D72B63D9170048646B /* MortyHashed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MortyHashed.swift; sourceTree = "<group>"; };
+		B60874B72B71F16A00C9364E /* XCTestCase+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Helpers.swift"; sourceTree = "<group>"; };
 		B626078E2B690E120022CB11 /* RickMortyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RickMortyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B62607902B690E120022CB11 /* RickMortySnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RickMortySnapshotTests.swift; sourceTree = "<group>"; };
 		B626079C2B69107D0022CB11 /* NetworkIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkIntegrationTests.swift; sourceTree = "<group>"; };
@@ -101,9 +103,18 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		B60874B62B71F15000C9364E /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				B60874B72B71F16A00C9364E /* XCTestCase+Helpers.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		B626078F2B690E120022CB11 /* RickMortyTests */ = {
 			isa = PBXGroup;
 			children = (
+				B60874B62B71F15000C9364E /* Helpers */,
 				B626079C2B69107D0022CB11 /* NetworkIntegrationTests.swift */,
 				B62607902B690E120022CB11 /* RickMortySnapshotTests.swift */,
 			);
@@ -307,6 +318,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B60874B82B71F16A00C9364E /* XCTestCase+Helpers.swift in Sources */,
 				B626079D2B69107D0022CB11 /* NetworkIntegrationTests.swift in Sources */,
 				B62607912B690E120022CB11 /* RickMortySnapshotTests.swift in Sources */,
 			);

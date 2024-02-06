@@ -15,19 +15,17 @@ final class NetworkIntegrationTests: XCTestCase {
     /// Example:
     /// `NetworkIntegrationTests` scheme for tests requiring network requests.
     
-    func test_canLoadItemsFromServer() async {
-        do {
+    func test_canLoadItemsFromServer() {
+        runAsyncTest {
             let sut = try await MortyManager.shared.fetchCharacter(link: MortyManager.charcterURL)
             guard let results = sut.results else { return XCTFail("No items founded or loaded from `Morty` server") }
 
             XCTAssertFalse(results.isEmpty)
-        } catch {
-            XCTFail("Can't load from `Morty` server. Reason: \n\(error.localizedDescription)")
         }
     }
     
-    func test_loadsNextPageOnRequest() async {
-        do {
+    func test_loadsNextPageOnRequest() {
+        runAsyncTest {
             let firstPageResponse = try await MortyManager.shared.fetchCharacter(link: MortyManager.charcterURL)
             guard let resultsReponseOne = firstPageResponse.results else { return XCTFail("No items founded or loaded from `Morty` server") }
            
@@ -35,24 +33,19 @@ final class NetworkIntegrationTests: XCTestCase {
             guard let resultsReponseTwo = secondPageResponse.results else { return XCTFail("No items founded or loaded from `Morty` server") }
             
             XCTAssertTrue((resultsReponseOne + resultsReponseTwo).count > resultsReponseTwo.count)
-        } catch {
-            XCTFail("Can't load from `Morty` server. Reason: \n\(error.localizedDescription)")
         }
     }
     
-    func test_compareRenderedItemsCountWithNetworkResponseCount() async {
-        do {
+    func test_compareRenderedItemsCountWithNetworkResponseCount() {
+        runAsyncTest {
             let sut = await MortyController(nextPage: MortyModel.MortyModelInfo(next: MortyManager.charcterURL))
-            await sut.fetchTasks()
             await sut.loadViewIfNeeded()
-            
+          
             let response = try await MortyManager.shared.fetchCharacter(link: MortyManager.charcterURL)
             let renderedItems = await sut.numberOfRenderedItems()
 
             guard let loadedItemsCount = response.results?.count else { return XCTFail("No items founded or loaded from `Morty` server") }
             XCTAssertEqual(renderedItems, loadedItemsCount)
-        } catch {
-            XCTFail("Can't load from `Morty` server. Reason: \n\(error.localizedDescription)")
         }
     }
 }
