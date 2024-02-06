@@ -12,7 +12,7 @@ extension XCTestCase {
         named testName: String = #function,
         in file: StaticString = #file,
         at line: UInt = #line,
-        withTimeout timeout: TimeInterval = 10,
+        withTimeout timeout: TimeInterval = 2.0,
         test: @escaping () async throws -> Void
     ) {
         var thrownError: Error?
@@ -31,12 +31,7 @@ extension XCTestCase {
 
         waitForExpectations(timeout: timeout)
 
-        if let error = thrownError {
-            XCTFail(
-                "Async error thrown: \(error)",
-                file: file,
-                line: line
-            )
-        }
+        guard let thrownError else { return }
+        XCTFail("Async error thrown: \(thrownError)", file: file, line: line)
     }
 }
