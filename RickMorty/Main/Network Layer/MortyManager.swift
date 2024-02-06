@@ -20,13 +20,13 @@ actor MortyManager {
 }
 
 extension MortyManager {
-    func fetchCharacter(link: String) async throws -> MortyModel {
+    func fetchCharacter(link: String) async throws -> CharactersModel {
         do {
             guard let endpoint = URL(string: link) else { throw URLError(.badURL) }
             let (data, response) = try await URLSession.shared.data(from: endpoint)
            
             guard validate(response: response) else { throw URLError(.badServerResponse) }
-            return try JSONDecoder().decode(MortyModel.self, from: data)
+            return try JSONDecoder().decode(CharactersModel.self, from: data)
         } catch {
             throw error
         }

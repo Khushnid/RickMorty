@@ -15,7 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         
         window.overrideUserInterfaceStyle = .dark
-        let rootController = MortyController(nextPage: MortyModelInfo(next: MortyManager.charcterURL))
+        let rootController = CharactersController(nextPage: CharactersModelInfo(next: MortyManager.charcterURL))
         window.rootViewController = UINavigationController(rootViewController: rootController)
        
         self.window = window

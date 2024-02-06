@@ -1,5 +1,5 @@
 //
-//  MortySection.swift
+//  CharactersSection.swift
 //  RickMorty
 //
 //  Created by Khushnidjon Keldiboev on 31/01/24.
@@ -7,6 +7,6 @@
 
 import Foundation
 
-enum MortySection {
+enum CharactersSection {
     case main
 }

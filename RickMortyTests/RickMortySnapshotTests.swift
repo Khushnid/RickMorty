@@ -31,18 +31,18 @@ final class RickMortySnapshotTests: XCTestCase {
 }
 
 private extension RickMortySnapshotTests {
-    func makeSut() -> MortyController {
-        let sut = MortyController(nextPage: MortyModelInfo(next: ""))
+    func makeSut() -> CharactersController {
+        let sut = CharactersController(nextPage: CharactersModelInfo(next: ""))
         sut.overrideUserInterfaceStyle = .dark
         sut.loadViewIfNeeded()
         return sut
     }
 }
 
-fileprivate extension MortyController {
+fileprivate extension CharactersController {
     func loadWithContent() {
         setDataSource(dataSource: [
-            MortyModelResult(
+            CharactersModelResult(
                 id: 1,
                 name: "Rick Sanchez",
                 status: "Alive",
@@ -50,13 +50,13 @@ fileprivate extension MortyController {
                 gender: "Male",
                 image: nil,
                 origin: nil,
-                location: MortyModelResult.MortyModelLocation(
+                location: CharactersModelResult.MortyModelLocation(
                     name: "Citadel of Ricks",
                     url: ""
                 )
             ),
             
-            MortyModelResult(
+            CharactersModelResult(
                 id: 2,
                 name: "Morty Smith",
                 status: "Alive",
@@ -64,7 +64,7 @@ fileprivate extension MortyController {
                 gender: "Male",
                 image: nil,
                 origin: nil,
-                location: MortyModelResult.MortyModelLocation(
+                location: CharactersModelResult.MortyModelLocation(
                     name: "Citadel of Ricks",
                     url: ""
                 )
@@ -74,7 +74,7 @@ fileprivate extension MortyController {
     
     func loadContentWithMissingDetails() {
         setDataSource(dataSource: [
-            MortyModelResult(
+            CharactersModelResult(
                 id: 1,
                 name: nil,
                 status: nil,
@@ -82,7 +82,7 @@ fileprivate extension MortyController {
                 gender: "Male",
                 image: nil,
                 origin: nil,
-                location: MortyModelResult.MortyModelLocation(
+                location: CharactersModelResult.MortyModelLocation(
                     name: "Citadel of Ricks",
                     url: ""
                 )

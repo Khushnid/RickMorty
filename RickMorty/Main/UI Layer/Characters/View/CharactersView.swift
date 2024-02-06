@@ -1,5 +1,5 @@
 //
-//  MortyView.swift
+//  CharactersView.swift
 //  RickMorty
 //
 //  Created by Khushnidjon Keldiboev on 16/01/24.
@@ -7,17 +7,17 @@
 
 import UIKit
 
-class MortyView: UIView {
+class CharactersView: UIView {
     var onNewPageRequest: (() -> Void)?
-    var dataSource: UITableViewDiffableDataSource<MortySection, MortyModelResult>!
+    var dataSource: UITableViewDiffableDataSource<CharactersSection, CharactersModelResult>!
     
-    var networkDTO = [MortyModelResult]() {
+    var networkDTO = [CharactersModelResult]() {
         didSet { applySnapshot() }
     }
     
     private(set) lazy var tableView: UITableView = {
         let table = UITableView()
-        table.register(MortyContentCell.self, forCellReuseIdentifier: MortyContentCell.reuseID)
+        table.register(CharactersContentCell.self, forCellReuseIdentifier: CharactersContentCell.reuseID)
         table.translatesAutoresizingMaskIntoConstraints = false
         table.showsVerticalScrollIndicator = false
         table.separatorStyle = .none
@@ -32,11 +32,11 @@ class MortyView: UIView {
         return spinner
     }()
     
-    func setDataSource(dataSource: [MortyModelResult]) {
+    func setDataSource(dataSource: [CharactersModelResult]) {
         networkDTO += dataSource
     }
     
-    func setupMortyView() {
+    func setupCharactersView() {
         addSubview(tableView)
         
         NSLayoutConstraint.activate([
@@ -46,10 +46,10 @@ class MortyView: UIView {
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
         
-        dataSource = UITableViewDiffableDataSource<MortySection, MortyModelResult>(
+        dataSource = UITableViewDiffableDataSource<CharactersSection, CharactersModelResult>(
             tableView: tableView,
             cellProvider: { tableView, indexPath, itemIdentifier in
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: MortyContentCell.reuseID) as? MortyContentCell else {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: CharactersContentCell.reuseID) as? CharactersContentCell else {
                     return UITableViewCell()
                 }
                 
@@ -61,7 +61,7 @@ class MortyView: UIView {
     }
     
     func applySnapshot() {
-        var currentSnapshot = NSDiffableDataSourceSnapshot<MortySection, MortyModelResult>()
+        var currentSnapshot = NSDiffableDataSourceSnapshot<CharactersSection, CharactersModelResult>()
         currentSnapshot.appendSections([.main])
         currentSnapshot.appendItems(networkDTO)
         dataSource.apply(currentSnapshot, animatingDifferences: false)
@@ -73,7 +73,7 @@ class MortyView: UIView {
     }
 }
 
-extension MortyView: UITableViewDelegate {
+extension CharactersView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let lastSectionIndex = tableView.numberOfSections - 1
         guard indexPath.section == lastSectionIndex && indexPath.row == tableView.numberOfRows(inSection: lastSectionIndex) - 1 else { return }

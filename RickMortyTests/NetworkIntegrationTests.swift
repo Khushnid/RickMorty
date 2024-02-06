@@ -38,8 +38,8 @@ final class NetworkIntegrationTests: XCTestCase {
     
     func test_compareRenderedItemsCountWithNetworkResponseCount() {
         runAsyncTest {
-            let sut = await MortyController(
-                nextPage: MortyModelInfo(next: MortyManager.charcterURL),
+            let sut = await CharactersController(
+                nextPage: CharactersModelInfo(next: MortyManager.charcterURL),
                 production: false
             )
             

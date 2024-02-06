@@ -1,5 +1,5 @@
 //
-//  MortyController.swift
+//  CharactersController.swift
 //  RickMorty
 //
 //  Created by Khushnidjon Keldiboev on 16/01/24.
@@ -7,11 +7,11 @@
 
 import UIKit
 
-class MortyController: UIViewController {
-    let rootView = MortyView()
-    private var paginationInfo: MortyModelInfo
+class CharactersController: UIViewController {
+    let rootView = CharactersView()
+    private var paginationInfo: CharactersModelInfo
     
-    init(nextPage: MortyModelInfo, production: Bool = true) {
+    init(nextPage: CharactersModelInfo, production: Bool = true) {
         self.paginationInfo = nextPage
         super.init(nibName: nil, bundle: nil)
         
@@ -25,7 +25,7 @@ class MortyController: UIViewController {
     
     override func loadView() {
         view = rootView
-        rootView.setupMortyView()
+        rootView.setupCharactersView()
     }
     
     override func viewDidLoad() {
@@ -40,7 +40,7 @@ class MortyController: UIViewController {
     }
 }
 
-extension MortyController {
+extension CharactersController {
     func fetchCharacters(onComplete: @escaping () async throws -> Void = {}) async {
         do {
             guard let nextPageURL = paginationInfo.next else { return rootView.stopLoadItems() }
@@ -61,7 +61,7 @@ extension MortyController {
         Task { await fetchCharacters() }
     }
     
-    func setDataSource(dataSource: [MortyModelResult]) {
+    func setDataSource(dataSource: [CharactersModelResult]) {
         rootView.setDataSource(dataSource: dataSource)
     }
 }

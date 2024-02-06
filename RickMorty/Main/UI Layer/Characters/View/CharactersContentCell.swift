@@ -1,5 +1,5 @@
 //
-//  MortyContentCell.swift
+//  CharactersContentCell.swift
 //  RickMorty
 //
 //  Created by Khushnidjon Keldiboev on 16/01/24.
@@ -8,12 +8,12 @@
 import Kingfisher
 import UIKit
 
-class MortyContentCell: UITableViewCell {
+class CharactersContentCell: UITableViewCell {
     private enum Constants {
         static let loaderImage = UIImage(named: "rick_and_morty_placeholder")
     }
     
-    static let reuseID = String(describing: MortyContentCell.self)
+    static let reuseID = String(describing: CharactersContentCell.self)
     
     private let container: UIView = {
         let view = UIView()
@@ -60,7 +60,7 @@ class MortyContentCell: UITableViewCell {
         horizontalTitleStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
     }
     
-    func setupContentData(data: MortyModelResult) {
+    func setupContentData(data: CharactersModelResult) {
         if let url = data.image, let imageURL = URL(string: url) {
             image.kf.indicatorType = .activity
             image.kf.setImage(with: imageURL, placeholder: Constants.loaderImage)
@@ -84,7 +84,7 @@ class MortyContentCell: UITableViewCell {
     }
 }
 
-private extension MortyContentCell {
+private extension CharactersContentCell {
     func setupContent() {
         contentView.addSubview(container)
         
@@ -109,7 +109,7 @@ private extension MortyContentCell {
         ])
     }
     
-    func generateSpecsText(data: MortyModelResult) -> String {
+    func generateSpecsText(data: CharactersModelResult) -> String {
         var specs = "Specs: "
         
         if let status = data.status, state(status) { specs += "\(status), " }

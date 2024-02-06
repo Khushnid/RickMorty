@@ -1,5 +1,5 @@
 //
-//  MortyModelInfo.swift
+//  CharactersModelInfo.swift
 //  RickMorty
 //
 //  Created by Khushnidjon Keldiboev on 06/02/24.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MortyModelInfo: Codable {
+struct CharactersModelInfo: Codable {
     let next, prev: String?
     let count, pages: Int
     
