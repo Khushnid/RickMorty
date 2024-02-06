@@ -11,9 +11,12 @@ class MortyController: UIViewController {
     let rootView = MortyView()
     private var paginationInfo: MortyModelInfo
     
-    init(nextPage: MortyModelInfo) {
+    init(nextPage: MortyModelInfo, production: Bool = true) {
         self.paginationInfo = nextPage
         super.init(nibName: nil, bundle: nil)
+        
+        guard production else { return }
+        fetchTasks()
     }
     
     required init?(coder: NSCoder) {
@@ -34,8 +37,6 @@ class MortyController: UIViewController {
             guard let self else { return }
             fetchTasks()
         }
-        
-        fetchTasks()
     }
 }
 

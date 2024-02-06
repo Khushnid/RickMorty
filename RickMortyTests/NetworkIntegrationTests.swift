@@ -38,17 +38,19 @@ final class NetworkIntegrationTests: XCTestCase {
     
     func test_compareRenderedItemsCountWithNetworkResponseCount() {
         runAsyncTest {
-            let sut = await MortyController(nextPage: MortyModelInfo(next: MortyManager.charcterURL))
+            let sut = await MortyController(
+                nextPage: MortyModelInfo(next: MortyManager.charcterURL),
+                production: false
+            )
+            
             await sut.loadViewIfNeeded()
-            try await Task.sleep(nanoseconds: 1_000_000_000)
             
             await sut.fetchCharacters {
                 let response = try await MortyManager.shared.fetchCharacter(link: MortyManager.charcterURL)
                 let renderedItems = await sut.rootView.networkDTO.count
 
-                /// The renderedItems count is duplicated, as items are loaded both in viewDidLoad and in this test method, resulting in a doubling of the loadedItems total.
                 guard let loadedItemsCount = response.results?.count else { return XCTFail("No items founded or loaded from `Morty` server") }
-                XCTAssertEqual(renderedItems, loadedItemsCount * 2)
+                XCTAssertEqual(renderedItems, loadedItemsCount)
             }
         }
     }
