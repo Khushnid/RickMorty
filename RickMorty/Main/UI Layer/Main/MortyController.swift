@@ -40,14 +40,14 @@ class MortyController: UIViewController {
 }
 
 extension MortyController {
-    func fetchCharacters(test: @escaping () async throws -> Void = {}) async {
+    func fetchCharacters(onComplete: @escaping () async throws -> Void = {}) async {
         do {
             guard let nextPageURL = paginationInfo.next else { return rootView.stopLoadItems() }
             let characters = try await MortyManager.shared.fetchCharacter(link: nextPageURL)
             
             setDataSource(dataSource: characters.results ?? [])
             paginationInfo = characters.info
-            try await test()
+            try await onComplete()
         } catch {
             showAlert(title: "Error occured", message: error.localizedDescription) { [weak self] in
                 guard let self else { return }
