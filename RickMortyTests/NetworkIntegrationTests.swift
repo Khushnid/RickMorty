@@ -43,19 +43,12 @@ final class NetworkIntegrationTests: XCTestCase {
         
             await sut.fetchCharacters {
                 let response = try await MortyManager.shared.fetchCharacter(link: MortyManager.charcterURL)
-                let renderedItems = await sut.numberOfRenderedItems()
+                let renderedItems = await sut.rootView.networkDTO.count
 
                 /// The renderedItems count is duplicated, as items are loaded both in viewDidLoad and in this test method, resulting in a doubling of the loadedItems total.
                 guard let loadedItemsCount = response.results?.count else { return XCTFail("No items founded or loaded from `Morty` server") }
                 XCTAssertEqual(renderedItems, loadedItemsCount * 2)
             }
         }
-    }
-}
-
-/// DLS Helper
-fileprivate extension MortyController {
-    func numberOfRenderedItems() -> Int {
-        rootView.networkDTO.count
     }
 }
