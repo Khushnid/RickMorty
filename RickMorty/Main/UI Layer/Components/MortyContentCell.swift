@@ -60,7 +60,7 @@ class MortyContentCell: UITableViewCell {
         horizontalTitleStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
     }
     
-    func setupContentData(data: MortyModel.MortyModelResult) {
+    func setupContentData(data: MortyModelResult) {
         if let url = data.image, let imageURL = URL(string: url) {
             image.kf.indicatorType = .activity
             image.kf.setImage(with: imageURL, placeholder: Constants.loaderImage)
@@ -109,7 +109,7 @@ private extension MortyContentCell {
         ])
     }
     
-    func generateSpecsText(data: MortyModel.MortyModelResult) -> String{
+    func generateSpecsText(data: MortyModelResult) -> String {
         var specs = "Specs: "
         
         if let status = data.status, state(status) { specs += "\(status), " }

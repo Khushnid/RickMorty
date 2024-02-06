@@ -32,7 +32,7 @@ final class RickMortySnapshotTests: XCTestCase {
 
 private extension RickMortySnapshotTests {
     func makeSut() -> MortyController {
-        let sut = MortyController(nextPage: MortyModel.MortyModelInfo(next: ""))
+        let sut = MortyController(nextPage: MortyModelInfo(next: ""))
         sut.overrideUserInterfaceStyle = .dark
         sut.loadViewIfNeeded()
         return sut
@@ -42,27 +42,29 @@ private extension RickMortySnapshotTests {
 fileprivate extension MortyController {
     func loadWithContent() {
         setDataSource(dataSource: [
-            MortyModel.MortyModelResult(
+            MortyModelResult(
+                id: 1,
                 name: "Rick Sanchez",
                 status: "Alive",
                 species: "Human",
                 gender: "Male",
                 image: nil,
                 origin: nil,
-                location: MortyModel.MortyModelResult.MortyModelLocation(
+                location: MortyModelResult.MortyModelLocation(
                     name: "Citadel of Ricks",
                     url: ""
                 )
             ),
             
-            MortyModel.MortyModelResult(
+            MortyModelResult(
+                id: 2,
                 name: "Morty Smith",
                 status: "Alive",
                 species: "Human",
                 gender: "Male",
                 image: nil,
                 origin: nil,
-                location: MortyModel.MortyModelResult.MortyModelLocation(
+                location: MortyModelResult.MortyModelLocation(
                     name: "Citadel of Ricks",
                     url: ""
                 )
@@ -72,9 +74,15 @@ fileprivate extension MortyController {
     
     func loadContentWithMissingDetails() {
         setDataSource(dataSource: [
-            MortyModel.MortyModelResult(
+            MortyModelResult(
+                id: 1,
+                name: nil,
+                status: nil,
+                species: nil,
                 gender: "Male",
-                location: MortyModel.MortyModelResult.MortyModelLocation(
+                image: nil,
+                origin: nil,
+                location: MortyModelResult.MortyModelLocation(
                     name: "Citadel of Ricks",
                     url: ""
                 )

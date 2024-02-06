@@ -9,9 +9,9 @@ import UIKit
 
 class MortyController: UIViewController {
     let rootView = MortyView()
-    private var paginationInfo: MortyModel.MortyModelInfo
+    private var paginationInfo: MortyModelInfo
     
-    init(nextPage: MortyModel.MortyModelInfo) {
+    init(nextPage: MortyModelInfo) {
         self.paginationInfo = nextPage
         super.init(nibName: nil, bundle: nil)
     }
@@ -60,7 +60,7 @@ extension MortyController {
         Task { await fetchCharacters() }
     }
     
-    func setDataSource(dataSource: [MortyModel.MortyModelResult]) {
+    func setDataSource(dataSource: [MortyModelResult]) {
         rootView.setDataSource(dataSource: dataSource)
     }
 }

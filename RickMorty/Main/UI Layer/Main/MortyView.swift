@@ -9,9 +9,9 @@ import UIKit
 
 class MortyView: UIView {
     var onNewPageRequest: (() -> Void)?
-    var dataSource: UITableViewDiffableDataSource<MortySection, MortyHashed>!
+    var dataSource: UITableViewDiffableDataSource<MortySection, MortyModelResult>!
     
-    var networkDTO = [MortyModel.MortyModelResult]() {
+    var networkDTO = [MortyModelResult]() {
         didSet { applySnapshot() }
     }
     
@@ -32,7 +32,7 @@ class MortyView: UIView {
         return spinner
     }()
     
-    func setDataSource(dataSource: [MortyModel.MortyModelResult]) {
+    func setDataSource(dataSource: [MortyModelResult]) {
         networkDTO += dataSource
     }
     
@@ -46,7 +46,7 @@ class MortyView: UIView {
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
         
-        dataSource = UITableViewDiffableDataSource<MortySection, MortyHashed>(
+        dataSource = UITableViewDiffableDataSource<MortySection, MortyModelResult>(
             tableView: tableView,
             cellProvider: { tableView, indexPath, itemIdentifier in
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: MortyContentCell.reuseID) as? MortyContentCell else {
@@ -61,9 +61,9 @@ class MortyView: UIView {
     }
     
     func applySnapshot() {
-        var currentSnapshot = NSDiffableDataSourceSnapshot<MortySection, MortyHashed>()
+        var currentSnapshot = NSDiffableDataSourceSnapshot<MortySection, MortyModelResult>()
         currentSnapshot.appendSections([.main])
-        currentSnapshot.appendItems(networkDTO.compactMap { MortyHashed(model: $0) })
+        currentSnapshot.appendItems(networkDTO)
         dataSource.apply(currentSnapshot, animatingDifferences: false)
     }
     

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B60806D82B63D9170048646B /* MortyHashed.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60806D72B63D9170048646B /* MortyHashed.swift */; };
 		B60874B82B71F16A00C9364E /* XCTestCase+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60874B72B71F16A00C9364E /* XCTestCase+Helpers.swift */; };
 		B62607912B690E120022CB11 /* RickMortySnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62607902B690E120022CB11 /* RickMortySnapshotTests.swift */; };
 		B62607992B690F0B0022CB11 /* InlineSnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = B62607982B690F0B0022CB11 /* InlineSnapshotTesting */; };
@@ -40,7 +39,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B60806D72B63D9170048646B /* MortyHashed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MortyHashed.swift; sourceTree = "<group>"; };
 		B60874B72B71F16A00C9364E /* XCTestCase+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Helpers.swift"; sourceTree = "<group>"; };
 		B626078E2B690E120022CB11 /* RickMortyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RickMortyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B62607902B690E120022CB11 /* RickMortySnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RickMortySnapshotTests.swift; sourceTree = "<group>"; };
@@ -88,7 +86,6 @@
 			isa = PBXGroup;
 			children = (
 				B67F2E8D2B56553300998344 /* MortyModel.swift */,
-				B60806D72B63D9170048646B /* MortyHashed.swift */,
 				B626079F2B6A02960022CB11 /* MortySection.swift */,
 			);
 			path = Entity;
@@ -335,7 +332,6 @@
 				B67F2E7A2B56456A00998344 /* MortyController.swift in Sources */,
 				B67F2E762B56456A00998344 /* AppDelegate.swift in Sources */,
 				B67F2E782B56456A00998344 /* SceneDelegate.swift in Sources */,
-				B60806D82B63D9170048646B /* MortyHashed.swift in Sources */,
 				B67F2E8E2B56553300998344 /* MortyModel.swift in Sources */,
 				B67F2E8C2B5654B900998344 /* MortyManager.swift in Sources */,
 				B67F2E982B567FDB00998344 /* MortyContentCell.swift in Sources */,

@@ -38,9 +38,10 @@ final class NetworkIntegrationTests: XCTestCase {
     
     func test_compareRenderedItemsCountWithNetworkResponseCount() {
         runAsyncTest {
-            let sut = await MortyController(nextPage: MortyModel.MortyModelInfo(next: MortyManager.charcterURL))
+            let sut = await MortyController(nextPage: MortyModelInfo(next: MortyManager.charcterURL))
             await sut.loadViewIfNeeded()
-        
+            try await Task.sleep(nanoseconds: 1_000_000_000)
+            
             await sut.fetchCharacters {
                 let response = try await MortyManager.shared.fetchCharacter(link: MortyManager.charcterURL)
                 let renderedItems = await sut.rootView.networkDTO.count
