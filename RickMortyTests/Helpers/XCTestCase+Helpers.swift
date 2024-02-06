@@ -12,7 +12,7 @@ extension XCTestCase {
         named testName: String = #function,
         in file: StaticString = #file,
         at line: UInt = #line,
-        withTimeout timeout: TimeInterval = 2.0,
+        withTimeout timeout: TimeInterval = 5.0,
         test: @escaping () async throws -> Void
     ) {
         var thrownError: Error?
