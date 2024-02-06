@@ -60,16 +60,16 @@ class CharactersView: UIView {
         )
     }
     
-    func applySnapshot() {
+    func stopLoadItems() {
+        tableLoader.stopAnimating()
+        tableView.tableFooterView?.isHidden = true
+    }
+    
+    private func applySnapshot() {
         var currentSnapshot = NSDiffableDataSourceSnapshot<CharactersSection, CharactersModelResult>()
         currentSnapshot.appendSections([.main])
         currentSnapshot.appendItems(networkDTO)
         dataSource.apply(currentSnapshot, animatingDifferences: false)
-    }
-    
-    func stopLoadItems() {
-        tableLoader.stopAnimating()
-        tableView.tableFooterView?.isHidden = true
     }
 }
 

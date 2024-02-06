@@ -41,18 +41,7 @@ class CharactersContentCell: UITableViewCell {
         stack.spacing = 6
         return stack
     }()
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        selectionStyle = .none
-        setupContent()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError()
-    }
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
         
@@ -61,6 +50,9 @@ class CharactersContentCell: UITableViewCell {
     }
     
     func setupContentData(data: CharactersModelResult) {
+        selectionStyle = .none
+        setupContent()
+        
         if let url = data.image, let imageURL = URL(string: url) {
             image.kf.indicatorType = .activity
             image.kf.setImage(with: imageURL, placeholder: Constants.loaderImage)
