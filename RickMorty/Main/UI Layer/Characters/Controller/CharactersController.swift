@@ -15,6 +15,13 @@ class CharactersController: UIViewController {
         self.paginationInfo = nextPage
         super.init(nibName: nil, bundle: nil)
         
+        title = "Rick & Morty"
+        
+        rootView.onNewPageRequest = { [weak self] in
+            guard let self else { return }
+            fetchTasks()
+        }
+        
         guard production else { return }
         fetchTasks()
     }
@@ -26,17 +33,6 @@ class CharactersController: UIViewController {
     override func loadView() {
         view = rootView
         rootView.setupCharactersView()
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        title = "Rick & Morty"
-        
-        rootView.onNewPageRequest = { [weak self] in
-            guard let self else { return }
-            fetchTasks()
-        }
     }
 }
 
