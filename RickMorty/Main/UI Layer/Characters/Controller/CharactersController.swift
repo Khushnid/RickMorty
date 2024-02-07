@@ -30,7 +30,9 @@ class CharactersController: UIViewController {
         view = rootView
         rootView.setupRootView()
     }
-    
+}
+
+extension CharactersController {
     func fetchCharacters(onComplete: @escaping () async throws -> Void = {}) async {
         do {
             guard let nextPageURL = paginationInfo.next else { return rootView.stopLoadItems() }
@@ -46,17 +48,17 @@ class CharactersController: UIViewController {
             }
         }
     }
+    
+    func setDataSource(dataSource: [CharactersModelResult]) {
+        rootView.setDataSource(dataSource: dataSource)
+    }
 }
 
 private extension CharactersController {
     func fetchTasks() {
         Task { await fetchCharacters() }
     }
-    
-    func setDataSource(dataSource: [CharactersModelResult]) {
-        rootView.setDataSource(dataSource: dataSource)
-    }
-    
+
     func setupViewBinders() {
         rootView.onNewPageRequest = { [weak self] in
             guard let self else { return }
