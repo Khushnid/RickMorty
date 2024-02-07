@@ -19,6 +19,7 @@ actor MortyManager {
     static let charcterURL = Constants.baseURL + Constants.characterEndpoint
 }
 
+// MARK: Fetch all character list
 extension MortyManager {
     func fetchCharacter(link: String) async throws -> CharactersModel {
         do {
@@ -27,6 +28,21 @@ extension MortyManager {
            
             guard validate(response: response) else { throw URLError(.badServerResponse) }
             return try JSONDecoder().decode(CharactersModel.self, from: data)
+        } catch {
+            throw error
+        }
+    }
+}
+
+// MARK: Fetch details of specific character
+extension MortyManager {
+    func fetchCharacterDetails(characterID: UInt) async throws -> CharacterDetailsModel {
+        do {
+            guard let endpoint = URL(string: "\(MortyManager.charcterURL)/\(characterID)") else { throw URLError(.badURL) }
+            let (data, response) = try await URLSession.shared.data(from: endpoint)
+           
+            guard validate(response: response) else { throw URLError(.badServerResponse) }
+            return try JSONDecoder().decode(CharacterDetailsModel.self, from: data)
         } catch {
             throw error
         }

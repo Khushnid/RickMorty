@@ -9,6 +9,7 @@ import UIKit
 
 class CharactersView: UIView {
     var onNewPageRequest: (() -> Void)?
+    var onCharacterSelected: ((Int) -> Void)?
     var dataSource: UITableViewDiffableDataSource<CharactersSection, CharactersModelResult>!
     
     var networkDTO = [CharactersModelResult]() {
@@ -36,7 +37,7 @@ class CharactersView: UIView {
         networkDTO += dataSource
     }
     
-    func setupCharactersView() {
+    func setupRootView() {
         addSubview(tableView)
         
         NSLayoutConstraint.activate([
@@ -83,5 +84,10 @@ extension CharactersView: UITableViewDelegate {
         
         tableView.tableFooterView = tableLoader
         tableView.tableFooterView?.isHidden = false
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let dataSource = networkDTO[safe: indexPath.row], let characterID = dataSource.id else { return }
+        onCharacterSelected?(characterID)
     }
 }

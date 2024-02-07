@@ -12,6 +12,9 @@
 		B60874BC2B72358900C9364E /* CharactersModelResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60874BB2B72358900C9364E /* CharactersModelResult.swift */; };
 		B60874C12B72380400C9364E /* CharacterDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60874C02B72380300C9364E /* CharacterDetailsController.swift */; };
 		B60874C32B723B6B00C9364E /* XCTestCase+MemoryLeakDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60874C22B723B6B00C9364E /* XCTestCase+MemoryLeakDetector.swift */; };
+		B60874D02B738D0E00C9364E /* CharacterDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60874CF2B738D0E00C9364E /* CharacterDetailsModel.swift */; };
+		B60874D72B738EB300C9364E /* MortyModelLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60874D62B738EB300C9364E /* MortyModelLocation.swift */; };
+		B60874DA2B73952100C9364E /* CharacterDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60874D92B73952100C9364E /* CharacterDetailsView.swift */; };
 		B62607912B690E120022CB11 /* RickMortySnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62607902B690E120022CB11 /* RickMortySnapshotTests.swift */; };
 		B62607992B690F0B0022CB11 /* InlineSnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = B62607982B690F0B0022CB11 /* InlineSnapshotTesting */; };
 		B626079B2B690F0B0022CB11 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = B626079A2B690F0B0022CB11 /* SnapshotTesting */; };
@@ -48,6 +51,9 @@
 		B60874BB2B72358900C9364E /* CharactersModelResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersModelResult.swift; sourceTree = "<group>"; };
 		B60874C02B72380300C9364E /* CharacterDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsController.swift; sourceTree = "<group>"; };
 		B60874C22B723B6B00C9364E /* XCTestCase+MemoryLeakDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakDetector.swift"; sourceTree = "<group>"; };
+		B60874CF2B738D0E00C9364E /* CharacterDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsModel.swift; sourceTree = "<group>"; };
+		B60874D62B738EB300C9364E /* MortyModelLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MortyModelLocation.swift; sourceTree = "<group>"; };
+		B60874D92B73952100C9364E /* CharacterDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsView.swift; sourceTree = "<group>"; };
 		B626078E2B690E120022CB11 /* RickMortyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RickMortyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B62607902B690E120022CB11 /* RickMortySnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RickMortySnapshotTests.swift; sourceTree = "<group>"; };
 		B626079C2B69107D0022CB11 /* NetworkIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkIntegrationTests.swift; sourceTree = "<group>"; };
@@ -140,9 +146,51 @@
 		B60874BF2B7236B500C9364E /* Character Details */ = {
 			isa = PBXGroup;
 			children = (
-				B60874C02B72380300C9364E /* CharacterDetailsController.swift */,
+				B60874CE2B738CD800C9364E /* Model */,
+				B60874D82B73951300C9364E /* View */,
+				B60874D32B738E4700C9364E /* Controller */,
 			);
 			path = "Character Details";
+			sourceTree = "<group>";
+		};
+		B60874CE2B738CD800C9364E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B60874CF2B738D0E00C9364E /* CharacterDetailsModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B60874D32B738E4700C9364E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B60874C02B72380300C9364E /* CharacterDetailsController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B60874D42B738E9500C9364E /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				B60874D52B738E9C00C9364E /* Model */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		B60874D52B738E9C00C9364E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B60874D62B738EB300C9364E /* MortyModelLocation.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B60874D82B73951300C9364E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B60874D92B73952100C9364E /* CharacterDetailsView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		B626078F2B690E120022CB11 /* RickMortyTests */ = {
@@ -208,6 +256,7 @@
 		B67F2E932B56643200998344 /* UI Layer */ = {
 			isa = PBXGroup;
 			children = (
+				B60874D42B738E9500C9364E /* Shared */,
 				B60874BE2B72369A00C9364E /* Characters */,
 				B60874BF2B7236B500C9364E /* Character Details */,
 			);
@@ -357,13 +406,16 @@
 				B67F2E902B5656F600998344 /* CharactersView.swift in Sources */,
 				B62607A02B6A02960022CB11 /* CharactersSection.swift in Sources */,
 				B67F2E922B56642500998344 /* MortyManager+Helpers.swift in Sources */,
+				B60874D02B738D0E00C9364E /* CharacterDetailsModel.swift in Sources */,
 				B67F2E9D2B56887900998344 /* UIViewController+Extensions.swift in Sources */,
 				B67F2E7A2B56456A00998344 /* CharactersController.swift in Sources */,
 				B60874BC2B72358900C9364E /* CharactersModelResult.swift in Sources */,
 				B67F2E762B56456A00998344 /* AppDelegate.swift in Sources */,
+				B60874D72B738EB300C9364E /* MortyModelLocation.swift in Sources */,
 				B67F2E782B56456A00998344 /* SceneDelegate.swift in Sources */,
 				B60874C12B72380400C9364E /* CharacterDetailsController.swift in Sources */,
 				B60874BA2B72358100C9364E /* CharactersModelInfo.swift in Sources */,
+				B60874DA2B73952100C9364E /* CharacterDetailsView.swift in Sources */,
 				B67F2E8E2B56553300998344 /* CharactersModel.swift in Sources */,
 				B67F2E8C2B5654B900998344 /* MortyManager.swift in Sources */,
 				B67F2E982B567FDB00998344 /* CharactersContentCell.swift in Sources */,

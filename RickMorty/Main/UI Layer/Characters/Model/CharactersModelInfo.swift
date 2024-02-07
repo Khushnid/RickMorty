@@ -8,8 +8,8 @@
 import Foundation
 
 struct CharactersModelInfo: Codable {
-    let next, prev: String?
     let count, pages: Int
+    let next, prev: String?
     
     init(next: String, prev: String = "", count: Int = 0, pages: Int = 0) {
         self.next = next

@@ -16,11 +16,7 @@ class CharactersController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         
         title = "Rick & Morty"
-        
-        rootView.onNewPageRequest = { [weak self] in
-            guard let self else { return }
-            fetchTasks()
-        }
+        setupViewBinders()
         
         guard production else { return }
         fetchTasks()
@@ -32,11 +28,9 @@ class CharactersController: UIViewController {
     
     override func loadView() {
         view = rootView
-        rootView.setupCharactersView()
+        rootView.setupRootView()
     }
-}
-
-extension CharactersController {
+    
     func fetchCharacters(onComplete: @escaping () async throws -> Void = {}) async {
         do {
             guard let nextPageURL = paginationInfo.next else { return rootView.stopLoadItems() }
@@ -52,12 +46,31 @@ extension CharactersController {
             }
         }
     }
-    
+}
+
+private extension CharactersController {
     func fetchTasks() {
         Task { await fetchCharacters() }
     }
     
     func setDataSource(dataSource: [CharactersModelResult]) {
         rootView.setDataSource(dataSource: dataSource)
+    }
+    
+    func setupViewBinders() {
+        rootView.onNewPageRequest = { [weak self] in
+            guard let self else { return }
+            fetchTasks()
+        }
+        
+        rootView.onCharacterSelected = { [weak self] characterID in
+            guard let self else { return }
+            onCharacterDetailsRequest(with: UInt(characterID))
+        }
+    }
+    
+    func onCharacterDetailsRequest(with id: UInt) {
+        let characterDetailsVC = CharacterDetailsController(characterID: id)
+        navigationController?.pushViewController(characterDetailsVC, animated: true)
     }
 }

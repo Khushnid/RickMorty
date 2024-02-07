@@ -54,10 +54,7 @@ fileprivate extension CharactersController {
                 gender: "Male",
                 image: nil,
                 origin: nil,
-                location: CharactersModelResult.MortyModelLocation(
-                    name: "Citadel of Ricks",
-                    url: ""
-                )
+                location: MortyModelLocation(name: "Citadel of Ricks", url: "")
             ),
             
             CharactersModelResult(
@@ -68,10 +65,7 @@ fileprivate extension CharactersController {
                 gender: "Male",
                 image: nil,
                 origin: nil,
-                location: CharactersModelResult.MortyModelLocation(
-                    name: "Citadel of Ricks",
-                    url: ""
-                )
+                location: MortyModelLocation(name: "Citadel of Ricks", url: "")
             )
         ])
     }
@@ -86,10 +80,7 @@ fileprivate extension CharactersController {
                 gender: "Male",
                 image: nil,
                 origin: nil,
-                location: CharactersModelResult.MortyModelLocation(
-                    name: "Citadel of Ricks",
-                    url: ""
-                )
+                location: MortyModelLocation(name: "Citadel of Ricks", url: "")
             )
         ])
     }

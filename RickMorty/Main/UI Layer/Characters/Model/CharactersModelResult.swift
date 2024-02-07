@@ -11,11 +11,6 @@ struct CharactersModelResult: Codable {
     let id: Int?
     let name, status, species, gender, image: String?
     let origin, location: MortyModelLocation?
-    
-    struct MortyModelLocation: Codable {
-        let name: String?
-        let url: String?
-    }
 }
 
 extension CharactersModelResult: Hashable {
