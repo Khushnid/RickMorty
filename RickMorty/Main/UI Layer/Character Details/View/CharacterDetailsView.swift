@@ -102,7 +102,7 @@ private extension CharacterDetailsView {
         !text.isEmpty && text != "unknown"
     }
     
-    func labelGenerate(_ text: String, _ special: Bool = false) -> UILabel {
+    func labelGenerate(_ text: String) -> UILabel {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 18)
         label.textAlignment = .left
