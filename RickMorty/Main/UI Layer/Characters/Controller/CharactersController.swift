@@ -17,7 +17,7 @@ class CharactersController: UIViewController {
         
         title = "Rick & Morty"
         setupViewBinders()
-        
+
         guard production else { return }
         fetchTasks()
     }
@@ -55,10 +55,6 @@ extension CharactersController {
 }
 
 private extension CharactersController {
-    func fetchTasks() {
-        Task { await fetchCharacters() }
-    }
-
     func setupViewBinders() {
         rootView.onNewPageRequest = { [weak self] in
             guard let self else { return }
@@ -69,6 +65,10 @@ private extension CharactersController {
             guard let self else { return }
             onCharacterDetailsRequest(with: UInt(characterID))
         }
+    }
+    
+    func fetchTasks() {
+        Task { await fetchCharacters() }
     }
     
     func onCharacterDetailsRequest(with id: UInt) {

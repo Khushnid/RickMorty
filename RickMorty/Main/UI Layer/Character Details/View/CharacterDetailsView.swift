@@ -9,7 +9,7 @@ import UIKit
 
 class CharacterDetailsView: UIView {
     func setupRootView() {
-        backgroundColor = .green
+        backgroundColor = .systemBackground
     }
 }
 

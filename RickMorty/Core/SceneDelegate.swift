@@ -17,9 +17,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.overrideUserInterfaceStyle = .dark
         let rootController = CharactersController(nextPage: CharactersModelInfo(next: MortyManager.charcterURL))
         window.rootViewController = UINavigationController(rootViewController: rootController)
-       
+        setupNavigationBar()
+        
         self.window = window
         window.makeKeyAndVisible()
+    }
+    
+    private func setupNavigationBar() {
+        UINavigationBar.appearance().tintColor = .white
+        UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(
+            UIOffset(horizontal: -1000.0, vertical: 0.0), for: .default
+        )
     }
 }
 

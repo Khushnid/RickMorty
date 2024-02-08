@@ -38,6 +38,7 @@ extension CharacterDetailsController {
     func fetchCharactersDetails(onComplete: @escaping () async throws -> Void = {}) async {
         do {
             character = try await MortyManager.shared.fetchCharacterDetails(characterID: characterID)
+            title = character?.name
             try await onComplete()
         } catch {
             showAlert(title: "Error occured", message: error.localizedDescription) { [weak self] in
@@ -46,7 +47,9 @@ extension CharacterDetailsController {
             }
         }
     }
-    
+}
+
+private extension CharacterDetailsController {
     func fetchTasks() {
         Task { await fetchCharactersDetails() }
     }
