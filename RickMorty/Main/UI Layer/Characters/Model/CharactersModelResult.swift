@@ -9,7 +9,7 @@ import Foundation
 
 struct CharactersModelResult: Codable {
     let id: Int?
-    let name, status, species, gender, image: String?
+    let name, status, species, type, gender, image: String?
     let origin, location: MortyModelLocation?
 }
 

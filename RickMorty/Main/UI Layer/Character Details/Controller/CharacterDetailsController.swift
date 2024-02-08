@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CharacterDetailsController: UIViewController {
     let rootView = CharacterDetailsView()
@@ -20,7 +21,8 @@ class CharacterDetailsController: UIViewController {
     
     var character: CharacterDetailsModel? = nil {
         didSet {
-            dump(character)
+            guard let character else { return }
+            rootView.setupRootView(character: character)
         }
     }
     
@@ -30,7 +32,6 @@ class CharacterDetailsController: UIViewController {
     
     override func loadView() {
         view = rootView
-        rootView.setupRootView()
     }
 }
 

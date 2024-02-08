@@ -32,7 +32,7 @@ class CharactersContentCell: UITableViewCell {
         return image
     }()
     
-    private let horizontalTitleStackView = {
+    private let titlesStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.distribution = .fill
@@ -46,7 +46,7 @@ class CharactersContentCell: UITableViewCell {
         super.prepareForReuse()
         
         image.image = Constants.loaderImage
-        horizontalTitleStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        titlesStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
     }
     
     func setupContentData(data: CharactersModelResult) {
@@ -62,16 +62,16 @@ class CharactersContentCell: UITableViewCell {
        
         if let name = data.name, state(name) {
             let characterName = labelGenerate(name, true)
-            horizontalTitleStackView.addArrangedSubview(characterName)
-            horizontalTitleStackView.setCustomSpacing(10, after: characterName)
+            titlesStackView.addArrangedSubview(characterName)
+            titlesStackView.setCustomSpacing(10, after: characterName)
         }
         
-        horizontalTitleStackView.addArrangedSubview(labelGenerate(
+        titlesStackView.addArrangedSubview(labelGenerate(
             generateSpecsText(data: data))
         )
 
         if let location = data.location?.name, !location.isEmpty {
-            horizontalTitleStackView.addArrangedSubview(labelGenerate("Location: \(location)"))
+            titlesStackView.addArrangedSubview(labelGenerate("Location: \(location)"))
         }
     }
 }
@@ -81,7 +81,7 @@ private extension CharactersContentCell {
         contentView.addSubview(container)
         
         container.addSubview(image)
-        container.addSubview(horizontalTitleStackView)
+        container.addSubview(titlesStackView)
         
         NSLayoutConstraint.activate([
             container.topAnchor.constraint(equalTo: contentView.topAnchor),
@@ -95,9 +95,9 @@ private extension CharactersContentCell {
             image.heightAnchor.constraint(equalToConstant: 140),
             image.widthAnchor.constraint(equalToConstant: 140),
             
-            horizontalTitleStackView.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: 8),
-            horizontalTitleStackView.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -8),
-            horizontalTitleStackView.centerYAnchor.constraint(equalTo: container.centerYAnchor),
+            titlesStackView.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: 8),
+            titlesStackView.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -8),
+            titlesStackView.centerYAnchor.constraint(equalTo: container.centerYAnchor),
         ])
     }
     
