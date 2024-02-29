@@ -8,8 +8,11 @@
 import Foundation
 
 actor MortyManager {
-    private init() {}
-    static let shared = MortyManager()
+    private let session: URLSession
+    
+    init(session: URLSession = URLSession.shared) {
+        self.session = session
+    }
     
     private enum Constants {
         static let baseURL = "https://rickandmortyapi.com/api/"
@@ -24,7 +27,7 @@ extension MortyManager {
     func fetchCharacter(link: String) async throws -> CharactersModel {
         do {
             guard let endpoint = URL(string: link) else { throw URLError(.badURL) }
-            let (data, response) = try await URLSession.shared.data(from: endpoint)
+            let (data, response) = try await session.data(from: endpoint)
            
             guard validate(response: response) else { throw URLError(.badServerResponse) }
             return try JSONDecoder().decode(CharactersModel.self, from: data)
@@ -39,7 +42,7 @@ extension MortyManager {
     func fetchCharacterDetails(characterID: UInt) async throws -> CharacterDetailsModel {
         do {
             guard let endpoint = URL(string: "\(MortyManager.charcterURL)/\(characterID)") else { throw URLError(.badURL) }
-            let (data, response) = try await URLSession.shared.data(from: endpoint)
+            let (data, response) = try await session.data(from: endpoint)
            
             guard validate(response: response) else { throw URLError(.badServerResponse) }
             return try JSONDecoder().decode(CharacterDetailsModel.self, from: data)

@@ -9,6 +9,7 @@ import UIKit
 import Kingfisher
 
 class CharacterDetailsController: UIViewController {
+    private let networkManager = MortyManager()
     let rootView = CharacterDetailsView()
     let characterID: UInt
     
@@ -38,7 +39,7 @@ class CharacterDetailsController: UIViewController {
 extension CharacterDetailsController {
     func fetchCharactersDetails(onComplete: @escaping () async throws -> Void = {}) async {
         do {
-            character = try await MortyManager.shared.fetchCharacterDetails(characterID: characterID)
+            character = try await networkManager.fetchCharacterDetails(characterID: characterID)
             title = character?.name
             try await onComplete()
         } catch {

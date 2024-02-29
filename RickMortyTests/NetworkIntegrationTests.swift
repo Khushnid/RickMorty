@@ -17,7 +17,7 @@ final class NetworkIntegrationTests: XCTestCase {
     
     func test_canLoadItemsFromServer() {
         runAsyncTest {
-            let sut = try await MortyManager.shared.fetchCharacter(link: MortyManager.charcterURL)
+            let sut = try await MortyManager().fetchCharacter(link: MortyManager.charcterURL)
             guard let results = sut.results else { return XCTFail("No items founded or loaded from `Morty` server") }
 
             XCTAssertFalse(results.isEmpty)
@@ -26,10 +26,10 @@ final class NetworkIntegrationTests: XCTestCase {
     
     func test_loadsNextPageOnRequest() {
         runAsyncTest {
-            let firstPageResponse = try await MortyManager.shared.fetchCharacter(link: MortyManager.charcterURL)
+            let firstPageResponse = try await MortyManager().fetchCharacter(link: MortyManager.charcterURL)
             guard let resultsReponseOne = firstPageResponse.results else { return XCTFail("No items founded or loaded from `Morty` server") }
            
-            let secondPageResponse = try await MortyManager.shared.fetchCharacter(link: "\(MortyManager.charcterURL)?page=2")
+            let secondPageResponse = try await MortyManager().fetchCharacter(link: "\(MortyManager.charcterURL)?page=2")
             guard let resultsReponseTwo = secondPageResponse.results else { return XCTFail("No items founded or loaded from `Morty` server") }
             
             XCTAssertTrue((resultsReponseOne + resultsReponseTwo).count > resultsReponseTwo.count)
@@ -47,7 +47,7 @@ final class NetworkIntegrationTests: XCTestCase {
             await controller.loadViewIfNeeded()
             
             await controller.fetchCharacters {
-                let response = try await MortyManager.shared.fetchCharacter(link: MortyManager.charcterURL)
+                let response = try await MortyManager().fetchCharacter(link: MortyManager.charcterURL)
                 let renderedItems = await controller.rootView.networkDTO.count
 
                 guard let loadedItemsCount = response.results?.count else { return XCTFail("No items founded or loaded from `Morty` server") }

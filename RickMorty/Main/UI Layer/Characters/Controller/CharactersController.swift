@@ -10,6 +10,7 @@ import UIKit
 class CharactersController: UIViewController {
     let rootView = CharactersView()
     private var paginationInfo: CharactersModelInfo
+    private let networkManager = MortyManager()
     
     init(nextPage: CharactersModelInfo, production: Bool = true) {
         self.paginationInfo = nextPage
@@ -36,7 +37,7 @@ extension CharactersController {
     func fetchCharacters(onComplete: @escaping () async throws -> Void = {}) async {
         do {
             guard let nextPageURL = paginationInfo.next else { return rootView.stopLoadItems() }
-            let characters = try await MortyManager.shared.fetchCharacter(link: nextPageURL)
+            let characters = try await networkManager.fetchCharacter(link: nextPageURL)
             
             setDataSource(dataSource: characters.results ?? [])
             paginationInfo = characters.info

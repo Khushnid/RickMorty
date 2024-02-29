@@ -17,6 +17,15 @@
   },
   "testTargets" : [
     {
+      "selectedTests" : [
+        "NetworkIntegrationTests\/test_canLoadItemsFromServer()",
+        "NetworkIntegrationTests\/test_compareRenderedItemsCountWithNetworkResponseCount()",
+        "NetworkIntegrationTests\/test_loadsNextPageOnRequest()",
+        "RickMortySnapshotTests\/test_contentWithDataAndLoader()",
+        "RickMortySnapshotTests\/test_contentWithMissingDetailsAndLoader()",
+        "RickMortySnapshotTests\/test_contentWithNoData()",
+        "UserAPITests\/testFetchUser()"
+      ],
       "target" : {
         "containerPath" : "container:RickMorty.xcodeproj",
         "identifier" : "B626078D2B690E120022CB11",
