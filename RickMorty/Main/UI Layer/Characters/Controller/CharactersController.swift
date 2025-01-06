@@ -66,9 +66,15 @@ private extension CharactersController {
             guard let self else { return }
             onCharacterDetailsRequest(with: UInt(characterID))
         }
+        
+        rootView.onRefresh = { [weak self] in
+            guard let self else { return }
+            fetchTasks()
+        }
     }
     
     func fetchTasks() {
+        rootView.stopRefresh()
         Task { await fetchCharacters() }
     }
     

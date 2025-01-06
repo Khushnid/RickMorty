@@ -11,6 +11,7 @@ class CharactersView: UIView {
     var onNewPageRequest: (() -> Void)?
     var onCharacterSelected: ((Int) -> Void)?
     var dataSource: UITableViewDiffableDataSource<CharactersSection, CharactersModelResult>!
+    var onRefresh: (() -> Void)?
     
     var networkDTO = [CharactersModelResult]() {
         didSet { applySnapshot() }
@@ -25,6 +26,8 @@ class CharactersView: UIView {
         table.delegate = self
         return table
     }()
+    
+    private let refreshControl = UIRefreshControl()
     
     private(set) lazy var tableLoader: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(style: .medium)
@@ -59,11 +62,22 @@ class CharactersView: UIView {
                 return cell
             }
         )
+        
+        refreshControl.addTarget(self, action: #selector(refreshTriggered), for: .valueChanged)
+        tableView.refreshControl = refreshControl
     }
     
     func stopLoadItems() {
         tableLoader.stopAnimating()
         tableView.tableFooterView?.isHidden = true
+    }
+    
+    func stopRefresh() {
+        refreshControl.endRefreshing()
+    }
+    
+    @objc private func refreshTriggered() {
+        onRefresh?()
     }
     
     private func applySnapshot() {
